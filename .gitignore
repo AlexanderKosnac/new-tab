@@ -1,0 +1,10 @@
+# build directories
+/build/
+
+# temporary files
+## vim
+*.swp
+
+# jetbrains directories
+/.idea
+/venv
