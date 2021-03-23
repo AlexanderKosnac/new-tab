@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "title": "Startpage"
+  },
+  "data": [
+    {
+      "": [
+        {
+          "label": "YouTube",
+          "icon": "assets/icons/placeholder.svg",
+          "link": "https://www.youtube.com/"
+        },
+        {
+          "label": "Wikipedia",
+          "icon": "assets/icons/placeholder.svg",
+          "link": "https://en.wikipedia.org/"
+        },
+        {
+          "label": "reddit",
+          "icon": "assets/icons/placeholder.svg",
+          "link": "https://www.reddit.com/"
+        },
+        {
+          "label": "Instagram",
+          "icon": "assets/icons/placeholder.svg",
+          "link": "https://www.instagram.com/"
+        },
+        {
+          "label": "Facebook",
+          "icon": "assets/icons/placeholder.svg",
+          "link": "https://facebook.com/"
+        },
+        {
+          "label": "Discord",
+          "icon": "assets/icons/placeholder.svg",
+          "link": "https://discord.com/"
+        }
+      ]
+    },
+    {
+      "Search Engines": [
+        {
+          "label": "Google",
+          "icon": "assets/icons/placeholder.svg",
+          "link": "https://www.google.com/"
+        },
+        {
+          "label": "Bing",
+          "icon": "assets/icons/placeholder.svg",
+          "link": "https://www.bing.com/"
+        },
+        {
+          "label": "DuckDuckGo",
+          "icon": "assets/icons/placeholder.svg",
+          "link": "https://duckduckgo.com/"
+        }
+      ]
+    },
+    {
+      "Git": [
+        {
+          "label": "GitHub",
+          "icon": "assets/icons/placeholder.svg",
+          "link": "https://github.com/"
+        },
+        {
+          "label": "GitLab",
+          "icon": "assets/icons/placeholder.svg",
+          "link": "https://gitlab.com/"
+        }
+      ]
+    }
+  ]
+}
