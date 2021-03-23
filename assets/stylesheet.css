@@ -1,0 +1,50 @@
+/*
+  general background: #2A2A2E
+    light background: #38383D
+  lighter background: #38383B
+                font: #BBCDD4
+*/
+
+body {
+    font-family: Calibri, sans-serif;
+    background-color: #2A2A2E;
+    color: #BBCDD4;
+}
+
+div.line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+div.fav-element {
+    border-radius: 7px;
+    text-align: center;
+    padding: 15px;
+}
+
+div.fav-element:hover {
+    background-color: #38383B;
+}
+
+div.link-icon {
+    border-radius: 7px;
+    background-color: #38383D;
+    width: auto;
+    padding: 10px;
+
+    box-shadow: 0 0 10px black;
+    margin-bottom: 5px;
+}
+
+img.icon {
+    border-radius: 7px;
+    max-width:  40px;
+    min-width:  40px;
+    max-height: 40px;
+    min-height: 40px;
+}
+
+span.link-label {
+    font-size: small;
+}
