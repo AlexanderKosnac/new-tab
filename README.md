@@ -11,7 +11,7 @@ ready to build and can be built with the make target `build-example`.
 Call the Python script like this:
 
 ```
-python create.py <input_file>
+python create.py <input_file> <assets_dir> <output_dir>
 ```
 
 ## Problems with Firefox
@@ -48,4 +48,3 @@ pref("general.config.filename", "autoconfig.cfg");
 pref("general.config.obscure_value", 0);
 pref("general.config.sandbox_enabled", false);
 ```
-

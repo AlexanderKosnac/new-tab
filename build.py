@@ -67,22 +67,19 @@ def create(_input, _output):
         o.write(html)
 
 
-def create_assets(build_dir):
-    shutil.copytree("assets", build_dir + "assets", dirs_exist_ok=True)
+def create_assets(assets_dir, output_dir):
+    shutil.copytree("assets", output_dir + "assets", dirs_exist_ok=True)
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        s = ("Expecting exactly one parameter:\n"
-             "    python create.py <input_file>")
+    if len(sys.argv) != 4:
+        s = ("Expecting exactly three arguments:\n"
+             "    python create.py <input_file> <assets_dir> <output_dir>")
         print(s, sys.stderr)
         exit(1)
+    input_file = sys.argv[1]
+    assets_dir = sys.argv[2]
+    output_dir = sys.argv[3]
 
-    BUILD_DIR = "build/"
-    if not os.path.exists(BUILD_DIR):
-        os.mkdir(BUILD_DIR)
-
-    create(sys.argv[1], BUILD_DIR + "startpage.html")
-    create_assets(BUILD_DIR)
-
-
+    create(input_file, output_dir + "startpage.html")
+    create_assets(assets_dir, output_dir)
