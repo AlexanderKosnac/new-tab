@@ -8,18 +8,18 @@ def indent(string, n):
     return string.replace("\n", "\n" + " " * n)
 
 
-def html_main(body_components):
+def html_main(map):
     t = """
 <html>
 <head>
-    <title>New Tab</title>
+    <title>{title}</title>
     <link rel="stylesheet" href="assets/stylesheet.css">
 </head>
 <body>
-{comps}
+{components}
 </body>
 </html>"""
-    return indent(t.format(comps="".join(body_components)), 0)
+    return indent(t.format_map(map), 0)
 
 
 def get_headline(text, level):
@@ -52,7 +52,7 @@ def create(_input, _output):
         data = json.load(i)
 
     body_components = []
-    body_components.append(get_headline(data["meta"]["title"], 1))
+    body_components.append(get_headline(data["meta"]["header"], 1))
 
     for line in data["data"]:
         for section in line:
@@ -61,7 +61,12 @@ def create(_input, _output):
             for item in line[section]:
                 items.append(get_fav_element(item["link"], item["icon"], item["label"]))
             body_components.append(get_line(items))
-    html = html_main(body_components)
+
+    map = {
+        "components": "".join(body_components),
+        "title": data["meta"]["title"]
+    }
+    html = html_main(map)
 
     with open(_output, "w") as o:
         o.write(html)
