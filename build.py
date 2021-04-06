@@ -73,7 +73,7 @@ def create(_input, _output):
 
 
 def create_assets(assets_dir, output_dir):
-    shutil.copytree("assets", output_dir + "assets", dirs_exist_ok=True)
+    shutil.copytree(assets_dir, output_dir + "/assets", dirs_exist_ok=True)
 
 
 if __name__ == "__main__":
@@ -86,5 +86,5 @@ if __name__ == "__main__":
     assets_dir = sys.argv[2]
     output_dir = sys.argv[3]
 
-    create(input_file, output_dir + "startpage.html")
+    create(input_file, output_dir + "/startpage.html")
     create_assets(assets_dir, output_dir)
