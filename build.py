@@ -54,6 +54,14 @@ def get_vertical_separator(item):
     return indent(t.format_map(item), 8)
 
 
+def get_text_element(item):
+    t = """
+<div class="text-element" style="width: {width}">
+{value}
+</div>"""
+    return indent(t.format_map(item), 8)
+
+
 def handle_item(item):
     type = item.pop("type", None)
     function_name = "get_%s" % type.replace("-", "_")

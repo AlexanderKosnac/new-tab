@@ -33,6 +33,14 @@ div.vertical-separator {
     padding: 1px;
 }
 
+div.text-element {
+    border: 1px solid #38383B;
+    border-radius: 7px;
+    padding: 5px;
+    box-shadow: 0 0 10px black;
+    margin: 0px 15px 0px 15px;
+}
+
 div.link-icon {
     border-radius: 7px;
     background-color: #38383D;

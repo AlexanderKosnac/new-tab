@@ -76,6 +76,17 @@
       "Git": [
         {
           "type": "fav-element",
+          "label": "git",
+          "icon": "assets/icons/placeholder.svg",
+          "link": "https://git-scm.com/"
+        },
+        {
+          "type": "text-element",
+          "width": "350px",
+          "value": "<strong>Git</strong> is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency."
+        },
+        {
+          "type": "fav-element",
           "label": "GitHub",
           "icon": "assets/icons/placeholder.svg",
           "link": "https://github.com/"
