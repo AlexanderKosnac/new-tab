@@ -27,6 +27,12 @@ div.fav-element:hover {
     background-color: #38383B;
 }
 
+div.vertical-separator {
+    border: 1px solid #38383B;
+    border-radius: 7px;
+    padding: 1px;
+}
+
 div.link-icon {
     border-radius: 7px;
     background-color: #38383D;

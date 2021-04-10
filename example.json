@@ -25,6 +25,9 @@
           "link": "https://www.reddit.com/"
         },
         {
+          "type": "vertical-separator"
+        },
+        {
           "type": "fav-element",
           "label": "Instagram",
           "icon": "assets/icons/placeholder.svg",
@@ -35,6 +38,9 @@
           "label": "Facebook",
           "icon": "assets/icons/placeholder.svg",
           "link": "https://facebook.com/"
+        },
+        {
+          "type": "vertical-separator"
         },
         {
           "type": "fav-element",

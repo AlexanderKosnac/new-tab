@@ -45,6 +45,15 @@ def get_fav_element(item):
     <span class="link-label">{label}</span>
 </div>"""
     return indent(t.format_map(item), 8)
+
+
+def get_vertical_separator(item):
+    t = """
+<div class="vertical-separator">
+</div>"""
+    return indent(t.format_map(item), 8)
+
+
 def handle_item(item):
     type = item.pop("type", None)
     function_name = "get_%s" % type.replace("-", "_")
