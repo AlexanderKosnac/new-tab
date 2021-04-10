@@ -7,31 +7,37 @@
     {
       "": [
         {
+          "type": "fav-element",
           "label": "YouTube",
           "icon": "assets/icons/placeholder.svg",
           "link": "https://www.youtube.com/"
         },
         {
+          "type": "fav-element",
           "label": "Wikipedia",
           "icon": "assets/icons/placeholder.svg",
           "link": "https://en.wikipedia.org/"
         },
         {
+          "type": "fav-element",
           "label": "reddit",
           "icon": "assets/icons/placeholder.svg",
           "link": "https://www.reddit.com/"
         },
         {
+          "type": "fav-element",
           "label": "Instagram",
           "icon": "assets/icons/placeholder.svg",
           "link": "https://www.instagram.com/"
         },
         {
+          "type": "fav-element",
           "label": "Facebook",
           "icon": "assets/icons/placeholder.svg",
           "link": "https://facebook.com/"
         },
         {
+          "type": "fav-element",
           "label": "Discord",
           "icon": "assets/icons/placeholder.svg",
           "link": "https://discord.com/"
@@ -41,16 +47,19 @@
     {
       "Search Engines": [
         {
+          "type": "fav-element",
           "label": "Google",
           "icon": "assets/icons/placeholder.svg",
           "link": "https://www.google.com/"
         },
         {
+          "type": "fav-element",
           "label": "Bing",
           "icon": "assets/icons/placeholder.svg",
           "link": "https://www.bing.com/"
         },
         {
+          "type": "fav-element",
           "label": "DuckDuckGo",
           "icon": "assets/icons/placeholder.svg",
           "link": "https://duckduckgo.com/"
@@ -60,11 +69,13 @@
     {
       "Git": [
         {
+          "type": "fav-element",
           "label": "GitHub",
           "icon": "assets/icons/placeholder.svg",
           "link": "https://github.com/"
         },
         {
+          "type": "fav-element",
           "label": "GitLab",
           "icon": "assets/icons/placeholder.svg",
           "link": "https://gitlab.com/"

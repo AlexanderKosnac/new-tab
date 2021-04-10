@@ -26,25 +26,29 @@ def get_headline(text, level):
     return indent("\n<h{lvl}>{txt}</h{lvl}>".format(lvl=level, txt=text), 4)
 
 
-def get_line(fav_elements):
+def get_line(elements):
     t = """
 <div class="line">\
 {elements}
 </div>"""
-    return indent(t.format(elements="".join(fav_elements)), 4)
+    return indent(t.format(elements="".join(elements)), 4)
 
 
-def get_fav_element(link, icon, label):
+def get_fav_element(item):
     t = """
 <div class="fav-element">
-    <a href="{ln}">
+    <a href="{link}">
         <div class="link-icon">
-            <img class=\"icon\" src=\"{src}\"/>
+            <img class=\"icon\" src=\"{icon}\"/>
         </div>
     </a>
-    <span class="link-label">{lbl}</span>
+    <span class="link-label">{label}</span>
 </div>"""
-    return indent(t.format(ln=link, src=icon, lbl=label), 8)
+    return indent(t.format_map(item), 8)
+def handle_item(item):
+    type = item.pop("type", None)
+    function_name = "get_%s" % type.replace("-", "_")
+    return getattr(sys.modules[__name__], function_name)(item)
 
 
 def create(_input, _output):
@@ -59,7 +63,7 @@ def create(_input, _output):
             items = []
             body_components.append(get_headline(section, 2))
             for item in line[section]:
-                items.append(get_fav_element(item["link"], item["icon"], item["label"]))
+                items.append(handle_item(item))
             body_components.append(get_line(items))
 
     map = {
