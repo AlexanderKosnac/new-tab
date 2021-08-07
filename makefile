@@ -11,4 +11,7 @@ clean:
 build-example: with-output
 	python build.py example.json assets/ $(build_dir)
 
-all: build-example
+build: with-output
+	python build.py links.json assets/ $(build_dir)
+
+all: build

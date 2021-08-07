@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "title": "New Tab",
+    "header": "Startpage"
+  },
+  "data": [
+    {
+      "": [
+        {
+          "type": "fav-element",
+          "label": "Wikipedia",
+          "icon": "assets/icons/placeholder.svg",
+          "link": "https://en.wikipedia.org/"
+        }
+      ]
+    }
+  ]
+}
