@@ -8,9 +8,17 @@
       "": [
         {
           "type": "fav-element",
-          "label": "YouTube",
           "icon": "assets/icons/placeholder.svg",
-          "link": "https://www.youtube.com/"
+          "label": "YouTube",
+          "link": "https://www.youtube.com/",
+          "profile_1": {
+            "label": "Twitch",
+            "link": "https://www.twitch.tv/"
+          },
+          "profile_2": {
+            "label": "Vimeo",
+            "link": "https://vimeo.com/"
+          }
         },
         {
           "type": "fav-element",

@@ -3,6 +3,7 @@ import os
 import sys
 import shutil
 
+PROFILE_PREFIX = "profile_"
 
 def indent(string, n):
     return string.replace("\n", "\n" + " " * n)
@@ -62,13 +63,18 @@ def get_text_element(item):
     return indent(t.format_map(item), 8)
 
 
-def handle_item(item):
+def handle_item(item, profile):
+    profile_name = PROFILE_PREFIX + profile
+    if profile_name in item:
+        for element in item[profile_name]:
+            item[element] = item[profile_name][element]
+
     type = item.pop("type", None)
     function_name = "get_%s" % type.replace("-", "_")
     return getattr(sys.modules[__name__], function_name)(item)
 
 
-def create(_input, _output):
+def create(_input, _output, profile):
     with open(_input, "r") as i:
         data = json.load(i)
 
@@ -80,7 +86,7 @@ def create(_input, _output):
             items = []
             body_components.append(get_headline(section, 2))
             for item in line[section]:
-                items.append(handle_item(item))
+                items.append(handle_item(item, profile))
             body_components.append(get_line(items))
 
     map = {
@@ -98,14 +104,15 @@ def create_assets(assets_dir, output_dir):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        s = ("Expecting exactly three arguments:\n"
-             "    python create.py <input_file> <assets_dir> <output_dir>")
+    if len(sys.argv) != 5:
+        s = ("Expecting exactly four arguments:\n"
+             "    python build.py <input_file> <profile> <assets_dir> <output_dir>")
         print(s, sys.stderr)
         exit(1)
     input_file = sys.argv[1]
-    assets_dir = sys.argv[2]
-    output_dir = sys.argv[3]
+    profile = sys.argv[2]
+    assets_dir = sys.argv[3]
+    output_dir = sys.argv[4]
 
-    create(input_file, output_dir + "/startpage.html")
+    create(input_file, output_dir + "/startpage.html", profile)
     create_assets(assets_dir, output_dir)
