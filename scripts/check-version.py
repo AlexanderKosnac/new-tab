@@ -1,35 +1,41 @@
 import sys
 
-def versionToList(version):
-    return [int(i) for i in version.split(".")]
+class Version:
 
+    def __init__(self, parts):
+        self._parts = parts
 
-# check if version is inbetween min and max version
-# returns
-#    0 if it is,
-#    1 if it exceed the maximum,
-#   -1 if it does not meet the minimum
-def check(v_val, v_min, v_max):
-    m = max([len(v_val), len(v_min), len(v_max)])
-    for l in [v_val, v_min, v_max]:
-        for i in range(len(l), m):
-            l.append(0)
+    @classmethod
+    def from_python_version(cls, string):
+        return Version.from_version_string(string.split(" ")[1])
 
-    s_val = 0
-    s_min = 0
-    s_max = 0
-    for i in range(m):
-        base = m - i
-        s_val += v_val[i] * (10**base)
-        s_min += v_min[i] * (10**base)
-        s_max += v_max[i] * (10**base)
+    @classmethod
+    def from_version_string(cls, string):
+        parts = [int(i) for i in string.split(".")]
+        return Version(parts)
 
-    if s_min <= s_val <= s_max:
+    def get_parts(self):
+        return self._parts
+
+    def _compare_to(self, other):
+        this = self.get_parts()
+        that = other.get_parts()
+        n = max(len(this), len(that));
+        for i in range(n):
+            this_e = this[i] if i < len(this) else 0
+            that_e = that[i] if i < len(that) else 0
+            if this_e < that_e:
+                return -1
+            if this_e > that_e:
+                return 1
         return 0
-    elif s_val > s_max:
-        return 1
-    elif s_val < s_min:
-        return -1
+
+    def __ge__(self, other):
+        return self._compare_to(other) in (0, 1)
+        return(self.seq > other)
+
+    def __lt__(self, other):
+        return self._compare_to(other) == -1
 
 
 if __name__ == "__main__":
@@ -37,20 +43,15 @@ if __name__ == "__main__":
         print("Not enough arguments provided")
         exit(100)
 
-    v_val = versionToList(sys.argv[1])
-    v_min = versionToList(sys.argv[2])
-    v_max = versionToList(sys.argv[3])
+    v_val = Version.from_python_version(sys.argv[1])
+    v_min = Version.from_version_string(sys.argv[2])
+    v_max = Version.from_version_string(sys.argv[3])
     msg = sys.argv[4]
 
-    r = check(v_val, v_min, v_max)
-    if r == 0:
+    if v_min < v_val < v_max:
         exit(0)
-    if r > 0:
-        print("Version too low")
+    else:
+        print("Version incompatible.")
         print(msg)
         exit(1)
-    if r < 0:
-        print("Version too high")
-        print(msg)
-        exit(2)
 

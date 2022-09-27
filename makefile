@@ -9,7 +9,7 @@ profile?=""
 
 check-python-version:
 	@$(PY_BIN) scripts/check-version.py \
-	    "$(shell $(PY_BIN) --version 2>&1 | cut -d " " -f 2)" \
+	    "$$($(PY_BIN) --version 2>&1)" \
 	    "3" \
 	    "4" \
 	    "Using $(PY_BIN) but only Python of version 3 is supported. Use \`make PY_BIN=<python_version>\` to specify the python version."
