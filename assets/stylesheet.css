@@ -1,14 +1,14 @@
-/*
-  general background: #2A2A2E
-    light background: #38383D
-  lighter background: #38383B
-                font: #BBCDD4
-*/
+:root {
+    --main-background: #2A2A2E;
+    --light-background: #38383D;
+    --lighter-background: #38383B;
+    --font-color: #BBCDD4;
+}
 
 body {
     font-family: Calibri, sans-serif;
-    background-color: #2A2A2E;
-    color: #BBCDD4;
+    background-color: var(--main-background);
+    color: var(--font-color);
 }
 
 div.line {
@@ -24,17 +24,17 @@ div.fav-element {
 }
 
 div.fav-element:hover {
-    background-color: #38383B;
+    background-color: var(--lighter-background);
 }
 
 div.vertical-separator {
-    border: 1px solid #38383B;
+    border: 1px solid var(--lighter-background);
     border-radius: 7px;
     padding: 1px;
 }
 
 div.text-element {
-    border: 1px solid #38383B;
+    border: 1px solid var(--lighter-background);
     border-radius: 7px;
     padding: 5px;
     box-shadow: 0 0 10px black;
@@ -43,7 +43,7 @@ div.text-element {
 
 div.link-icon {
     border-radius: 7px;
-    background-color: #38383D;
+    background-color: var(--light-background);
     width: auto;
     padding: 10px;
 
