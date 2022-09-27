@@ -41,6 +41,11 @@ div.text-element {
     margin: 0px 15px 0px 15px;
 }
 
+div.text-element:empty {
+    display: none;
+    border: 1px solid red;
+}
+
 div.link-icon {
     border-radius: 7px;
     background-color: var(--light-background);

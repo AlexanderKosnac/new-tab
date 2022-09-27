@@ -57,10 +57,8 @@ def get_vertical_separator(item):
 
 
 def get_text_element(item):
-    t = """
-<div class="text-element" style="width: {width}">
-{value}
-</div>"""
+    # It is important to do this in one line so the css :empty pseudo class properly recognizes it as empty.
+    t = "<div class=\"text-element\" style=\"width: {width}\">{value}</div>"
     return indent(t.format_map(item), 8)
 
 
