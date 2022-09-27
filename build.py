@@ -38,11 +38,12 @@ def get_line(elements):
 def get_fav_element(item):
     t = """
 <div class="fav-element">
-    <a href="{link}">
+    <a href="{link}" class="link-element">
         <div class="link-icon">
             <img class=\"icon\" src=\"{icon}\"/>
         </div>
     </a>
+    <br>
     <span class="link-label">{label}</span>
 </div>"""
     return indent(t.format_map(item), 8)

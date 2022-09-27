@@ -59,6 +59,10 @@ img.icon {
     min-height: 40px;
 }
 
+a.link-element {
+    display: inline-block;
+}
+
 span.link-label {
     font-size: small;
 }
