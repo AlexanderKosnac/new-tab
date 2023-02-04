@@ -15,24 +15,25 @@ def html_main(map):
 <head>
     <title>{title}</title>
     <link rel="stylesheet" href="assets/stylesheet.css">
+    <script type="text/javascript" src="assets/script.js"></script>
 </head>
-<body>
+<body onload="onload_hook()">
 {components}
 </body>
 </html>"""
     return indent(t.format_map(map), 0)
 
 
-def get_headline(text, level):
-    return indent("\n<h{lvl}>{txt}</h{lvl}>".format(lvl=level, txt=text), 4)
+def get_headline(text, level, attrs=[]):
+    return indent("\n<h{lvl} {attrs}>{txt}</h{lvl}>".format(lvl=level, txt=text, attrs=" ".join(attrs)), 4)
 
 
-def get_line(elements):
+def get_line(line_id, elements):
     t = """
-<div class="line">\
+<div id="line-{line_id}" class="line">\
 {elements}
 </div>"""
-    return indent(t.format(elements="".join(elements)), 4)
+    return indent(t.format(line_id=line_id, elements="".join(elements)), 4)
 
 
 def get_fav_element(item):
@@ -80,13 +81,15 @@ def create(_input, _output, profile):
     body_components = []
     body_components.append(get_headline(data["meta"]["header"], 1))
 
+    line_id = 0
     for line in data["data"]:
         for section in line:
             items = []
-            body_components.append(get_headline(section, 2))
+            body_components.append(get_headline(section, 2, ["onclick=\"toggleLine(" + str(line_id) + ")\""]))
             for item in line[section]:
                 items.append(handle_item(item, profile))
-            body_components.append(get_line(items))
+            body_components.append(get_line(line_id, items))
+        line_id += 1
 
     map = {
         "components": "".join(body_components),
