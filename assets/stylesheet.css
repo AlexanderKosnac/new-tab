@@ -11,6 +11,10 @@ body {
     color: var(--font-color);
 }
 
+h2 {
+    display: table;
+}
+
 h2:empty {
     display: none;
 }
