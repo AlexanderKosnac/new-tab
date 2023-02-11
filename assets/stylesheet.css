@@ -11,6 +11,10 @@ body {
     color: var(--font-color);
 }
 
+h2:empty {
+    display: none;
+}
+
 div.line {
     display: flex;
     flex-wrap: wrap;
@@ -43,7 +47,6 @@ div.text-element {
 
 div.text-element:empty {
     display: none;
-    border: 1px solid red;
 }
 
 div.link-icon {
