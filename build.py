@@ -69,8 +69,8 @@ def handle_item(item, profile):
         for element in item[profile_name]:
             item[element] = item[profile_name][element]
 
-    type = item.pop("type", None)
-    function_name = "get_%s" % type.replace("-", "_")
+    ttype = item.pop("type", "fav-element")
+    function_name = "get_%s" % ttype.replace("-", "_")
     return getattr(sys.modules[__name__], function_name)(item)
 
 
@@ -91,11 +91,11 @@ def create(_input, _output, profile):
             body_components.append(get_line(line_id, items))
         line_id += 1
 
-    map = {
+    m = {
         "components": "".join(body_components),
         "title": data["meta"]["title"]
     }
-    html = html_main(map)
+    html = html_main(m)
 
     with open(_output, "w") as o:
         o.write(html)
