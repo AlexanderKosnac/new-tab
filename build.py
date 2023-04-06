@@ -5,8 +5,17 @@ import shutil
 
 PROFILE_PREFIX = "profile_"
 
+ICON_MAPPING = []
+
 def indent(string, n):
     return string.replace("\n", "\n" + " " * n)
+
+
+def resolve_icon(item):
+    link = item["link"]
+    for entry in ICON_MAPPING:
+        if link.startswith(entry[0]):
+            return entry[1]
 
 
 def html_main(map):
@@ -37,6 +46,8 @@ def get_line(line_id, elements):
 
 
 def get_fav_element(item):
+    if not "icon" in item:
+        item["icon"] = resolve_icon(item)
     t = """
 <div class="fav-element">
     <a href="{link}" class="link-element">
@@ -80,6 +91,9 @@ def create(_input, _output, profile):
 
     body_components = []
     body_components.append(get_headline(data["meta"]["header"], 1))
+
+    global ICON_MAPPING
+    ICON_MAPPING = data.get("icon-mapping", [])
 
     line_id = 0
     for line in data["data"]:

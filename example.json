@@ -3,6 +3,10 @@
     "title": "New Tab",
     "header": "Startpage"
   },
+  "icon-mapping": [
+    ["https://en.wikipedia.org/", "assets/icons/placeholder2.svg"],
+    ["https://github.com/", "assets/icons/placeholder3.svg"]
+  ],
   "data": [
     {
       "": [
@@ -80,6 +84,24 @@
       ]
     },
     {
+      "Favorite Wikipedia articles": [
+        {
+          "type": "fav-element",
+          "label": "Wikipedia<br>GitHub",
+          "link": "https://en.wikipedia.org/wiki/GitHub"
+        },
+        {
+          "type": "fav-element",
+          "label": "Wikipedia<br>GitLab",
+          "link": "https://en.wikipedia.org/wiki/GitLab"
+        },
+        {
+          "label": "Wikipedia<br>GitLab",
+          "link": "https://en.wikipedia.org/wiki/Git"
+        }
+      ]
+    },
+    {
       "Git": [
         {
           "type": "fav-element",
@@ -103,6 +125,17 @@
           "label": "GitLab",
           "icon": "assets/icons/placeholder.svg",
           "link": "https://gitlab.com/"
+        },
+        {
+          "type": "vertical-separator"
+        },
+        {
+          "label": "Linux",
+          "link": "https://github.com/torvalds/linux"
+        },
+        {
+          "label": "vim",
+          "link": "https://github.com/vim/vim"
         }
       ]
     }
