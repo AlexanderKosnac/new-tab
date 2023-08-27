@@ -1,6 +1,4 @@
-/*
- * COOKIE HANDLING
- */
+// Cookie handling
 function getCookie(name) {
     cookies = document.cookie.split(";")
     for (i = 0; i < cookies.length; i++) {
@@ -24,11 +22,12 @@ function setCookieAsArray(name, values) {
     setCookie(name, values.join(","));
 }
 
-/*
- * LINE VISIBILITY
- */
+// Visibility
 COOKIE_STARTPAGE_VISIBILITY = "startpage-visibility";
 VISIBILITY_STATE = []
+
+const objIdMapping = new Map();
+
 
 function readVisibilityState() {
     VISIBILITY_STATE = getCookieAsArray(COOKIE_STARTPAGE_VISIBILITY);
@@ -38,42 +37,32 @@ function writeVisibilityState() {
     setCookieAsArray(COOKIE_STARTPAGE_VISIBILITY, VISIBILITY_STATE);
 }
 
-function getLine(lineNo) {
-    return document.getElementById("line-" + lineNo);
-}
-
 function isLineVisibile(line) {
-    return !(line.style.display == "none");
+    return line.getAttribute("state") === "open";
 }
 
 function setLineVisible(line, bool) {
-    line.style.display = bool ? "flex" : "none";
-
-    lineNo = line.id.split("-")[1];
-    VISIBILITY_STATE[lineNo] = bool ? "1" : "0";
+    line.setAttribute("state", bool ? "open" : "closed");
+    VISIBILITY_STATE[objIdMapping.get(line)] = bool ? "1" : "0";
+    console.log(VISIBILITY_STATE)
     writeVisibilityState();
 }
 
-function toggleLine(lineNo) {
-    line = getLine(lineNo);
-    b = !isLineVisibile(line);
-    setLineVisible(line, b);
-}
-
-function setLineVisibilityBasedOnCookie(lineNo) {
-    line = getLine(lineNo);
-    visible = VISIBILITY_STATE[lineNo] == "0" ? false : true;
-    setLineVisible(line, visible);
+function toggleLine(it) {
+    setLineVisible(it, !isLineVisibile(it));
 }
 
 function setAllLinesBasedOnCookies() {
-    lines = document.getElementsByClassName("line");
-    for (i = 0; i < lines.length; i++) {
-        setLineVisibilityBasedOnCookie(i);
+    let lines = document.querySelectorAll("h2");
+    for (let i=0; i<lines.length; i++) {
+        setLineVisible(lines[i], VISIBILITY_STATE[i] !== "0");
     }
 }
 
 function onload_hook() {
+    let i = 0;
+    document.querySelectorAll("h2").forEach(it => objIdMapping.set(it, i++));
+
     readVisibilityState();
     setAllLinesBasedOnCookies();
 }

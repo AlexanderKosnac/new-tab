@@ -37,12 +37,12 @@ def get_headline(text, level, attrs=[]):
     return indent("\n<h{lvl} {attrs}>{txt}</h{lvl}>".format(lvl=level, txt=text, attrs=" ".join(attrs)), 4)
 
 
-def get_line(line_id, elements):
+def get_line(elements):
     t = """
-<div id="line-{line_id}" class="line">\
+<div class="line">\
 {elements}
 </div>"""
-    return indent(t.format(line_id=line_id, elements="".join(elements)), 4)
+    return indent(t.format(elements="".join(elements)), 4)
 
 
 def get_fav_element(item):
@@ -95,15 +95,13 @@ def create(_input, _output, profile):
     global ICON_MAPPING
     ICON_MAPPING = data.get("icon-mapping", [])
 
-    line_id = 0
     for line in data["data"]:
         for section in line:
             items = []
-            body_components.append(get_headline(section, 2, ["onclick=\"toggleLine(" + str(line_id) + ")\""]))
+            body_components.append(get_headline(section, 2, ["onclick=\"toggleLine(this)\""]))
             for item in line[section]:
                 items.append(handle_item(item, profile))
-            body_components.append(get_line(line_id, items))
-        line_id += 1
+            body_components.append(get_line(items))
 
     m = {
         "components": "".join(body_components),
