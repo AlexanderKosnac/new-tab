@@ -1,4 +1,3 @@
-SHELL := /bin/bash
 PY_BIN ?= python
 
 build_dir = build/
@@ -7,23 +6,17 @@ default_target: all
 
 profile?=""
 
-check-python-version:
-	@$(PY_BIN) scripts/check-version.py \
-	    "$$($(PY_BIN) --version 2>&1)" \
-	    "3" \
-	    "4" \
-	    "Using $(PY_BIN) but only Python of version 3 is supported. Use \`make PY_BIN=<python_version>\` to specify the python version."
-
+.PHONY: build build-example with-output clean all
 with-output:
 	mkdir -p $(build_dir)
 
 clean:
 	rm -rf $(build_dir)
 
-build-example: with-output check-python-version
+build-example: with-output
 	$(PY_BIN) build.py example.json $(profile) assets/ $(build_dir)
 
-build: with-output check-python-version
+build: with-output
 	$(PY_BIN) build.py links.json $(profile) assets/ $(build_dir)
 
 all: build

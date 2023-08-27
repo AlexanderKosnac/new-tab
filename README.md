@@ -1,8 +1,8 @@
 # New Tab Page
 
-Build a static, dark themed "New Tab" page based on a simple json file.
+Build a dark themed "New Tab" page, based on a simple json file.
 
-It creates a simple static html file with sections and linked icons based on
+It creates a simple static HTML file with sections and linked icons based on
 the provided structure in the json input.
 
 Take a look at `example.json`, which covers all available structures. It is
@@ -25,7 +25,7 @@ files with the respective content:
 
 `autoconfig.cfg`
 
-Set the path to the html file in `PATH`
+Set the path to the HTML file in `PATH`
 
 ```javascript
 // comment required
