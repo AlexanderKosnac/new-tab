@@ -1,18 +1,18 @@
 # New Tab Page
 
-Build a dark themed "New Tab" page, based on a simple json file.
+Build a generic "New Tab" page.
 
-It creates a simple static HTML file with sections and linked icons based on
-the provided structure in the json input.
 
-Take a look at `example.json`, which covers all available structures. It is
-ready to build and can be built with the make target `build-example`.
+## Build
 
-Call the Python script like this:
+To compile the page, run the following:
 
+```bash
+npm run build
 ```
-python build.py <input_file> <profile> <assets_dir> <output_dir>
-```
+
+The result is found in the `dist` directory.
+
 
 ## Problems with Firefox
 
