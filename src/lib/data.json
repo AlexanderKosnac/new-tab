@@ -1,0 +1,26 @@
+{
+    "title": "New Tab",
+    "data": [
+        {
+            "type": "favorite",
+            "url": "https://en.wikipedia.org",
+            "label": "Wikipedia"
+        },
+        {
+            "type": "favorite",
+            "url": "https://github.com",
+            "label": "GitHub",
+            "icon": "placeholder2.svg"
+        },
+        {
+            "type": "header",
+            "text": "Another Row"
+        },
+        {
+            "type": "favorite",
+            "url": "https://www.youtube.com",
+            "label": "YouTube",
+            "icon": "placeholder3.svg"
+        }
+    ]    
+}

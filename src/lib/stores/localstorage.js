@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 import { browser } from '$app/environment';
 
 export function localStorageStore(key, initialValue) {
-  if (!browser) return initialValue;
+  if (!browser) return null;
 
   let serialize = JSON.stringify;
   let deserialize = JSON.parse;

@@ -1,0 +1,12 @@
+:root {
+    --main-background: #2A2A2E;
+    --light-background: #38383D;
+    --lighter-background: #38383B;
+    --font-color: #BBCDD4;
+}
+
+body {
+    font-family: Calibri, sans-serif;
+    background-color: var(--main-background);
+    color: var(--font-color);
+}
