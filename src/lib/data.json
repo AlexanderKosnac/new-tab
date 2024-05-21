@@ -4,7 +4,8 @@
         {
             "type": "favorite",
             "url": "https://en.wikipedia.org",
-            "label": "Wikipedia"
+            "label": "Wikipedia",
+            "shortcut": "w"
         },
         {
             "type": "favorite",
