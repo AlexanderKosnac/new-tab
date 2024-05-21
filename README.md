@@ -11,7 +11,7 @@ To compile the page, run the following:
 npm run build
 ```
 
-The result is found in the `dist` directory.
+The result is found in the `build` directory.
 
 
 ## Problems with Firefox

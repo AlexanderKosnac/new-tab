@@ -91,5 +91,6 @@
 
 .link-label {
     font-size: small;
+    max-width: 60px;
 }
 </style>
