@@ -1,6 +1,6 @@
 # New Tab Page
 
-Build a generic "New Tab" page.
+Build a generic "New Tab" page. You can find an example deployed on [GitHub pages](https://alexanderkosnac.github.io/new-tab/).
 
 
 ## Build
