@@ -4,7 +4,7 @@
     export let icon = "placeholder.svg";
     export let shortcut;
 
-    import { base } from '$app/paths'
+    import { base } from "$app/paths"
 
     let favEl;
     let linkEl;
@@ -62,10 +62,12 @@
     text-align: center;
     vertical-align: middle;
 
-    padding: 0.5em;
-    font-size: 0.6em;
+    --sc-size: 21px;
+    width: var(--sc-size);
+    height: var(--sc-size);
+    line-height: var(--sc-size);
     font-weight: 900;
-    line-height: 0.2;
+    font-size: 0.9em;
     white-space: nowrap;
 }
 
