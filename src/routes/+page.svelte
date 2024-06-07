@@ -8,6 +8,7 @@
 
     function openShortcut(e) {
         const el = shortcuts[e.key];
+        if (e.ctrlKey) return;
         if (el) el.open();
     }
 </script>
