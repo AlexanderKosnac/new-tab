@@ -3,7 +3,7 @@
 Build a generic "New Tab" page. You can find an example deployed on [GitHub pages](https://alexanderkosnac.github.io/new-tab/).
 
 
-## Build
+## Build and Run
 
 To compile the page, run the following:
 
@@ -12,6 +12,12 @@ npm run build
 ```
 
 The result is found in the `build` directory.
+Until there is a reliable option to build a Svelte application in a single file, the result has to be hosted by a web server.
+You can use Python for that:
+
+```bash
+python3 -m http.server --directory build/ <PORT>
+```
 
 
 ## Problems with Firefox
@@ -25,7 +31,7 @@ files with the respective content:
 
 `autoconfig.cfg`
 
-Set the path to the HTML file in `PATH`
+Set the URL to where the file is hosted:
 
 ```javascript
 // comment required
@@ -33,7 +39,7 @@ var {classes:Cc,interfaces:Ci,utils:Cu} = Components;
 
 try {
     Cu.import("resource:///modules/AboutNewTab.jsm");
-    AboutNewTab.newTabURL = "<PATH>";
+    AboutNewTab.newTabURL = "http://localhost:<PORT>";
 } catch(e){
     Cu.reportError(e);
 }
