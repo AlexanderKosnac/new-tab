@@ -8,7 +8,9 @@
   </style>
   <g>
     <rect width="256" height="256" fill="LightSalmon"></rect>
+    <!--
     <text class="text" x="50%" y="33%">New</text>
     <text class="text" x="50%" y="66%">Tab</text>
+    -->
   </g>
 </svg>
