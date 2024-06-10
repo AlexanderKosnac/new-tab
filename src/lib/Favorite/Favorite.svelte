@@ -4,8 +4,6 @@
     export let icon = "placeholder.svg";
     export let shortcut;
 
-    import { base } from "$app/paths"
-
     let favEl;
     let linkEl;
     let iconEl;
@@ -25,7 +23,7 @@
         <div class="shortcut">{shortcut}</div>
         {/if}
         <div class="link-icon" bind:this={iconEl}>
-            <img class="icon" alt="Icon" src="{base}/icons/{icon}">
+            <img class="icon" alt="Icon" src="./icons/{icon}">
         </div>
     </a>
     <span class="link-label">{label}</span>
