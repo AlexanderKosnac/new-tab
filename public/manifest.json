@@ -9,6 +9,10 @@
         "newtab": "index.html"
     },
 
+    "action": {
+        "default_popup": "popup.html"
+    },
+
     "permissions": [
         "storage"
     ],
