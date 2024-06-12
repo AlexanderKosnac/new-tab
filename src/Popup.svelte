@@ -43,7 +43,7 @@
     const minutes = String(date.getMinutes()).padStart(2, "0");
     const seconds = String(date.getSeconds()).padStart(2, "0");
 
-    let filename = `${year}-${month}-${day}-${hours}-${minutes}-${seconds}`;
+    let filename = `new-tab-data-${year}-${month}-${day}-${hours}-${minutes}-${seconds}.json`;
 
     const text = JSON.stringify(ntdata, null, 2);
     let element = document.createElement("a");
