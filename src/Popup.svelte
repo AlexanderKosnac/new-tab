@@ -3,6 +3,25 @@
 
   let ntdata;
 
+  let elementTypes = [
+    {
+      display: "Favorite",
+      default: {
+        "type": "favorite",
+        "url": "",
+        "label": "",
+        "shortcut": ""
+      }
+    }, {
+      display: "Header",
+      default: {
+        "type": "header",
+        "text": ""
+      }
+    },
+  ];
+  let selectedElementType = elementTypes[0];
+
   function save() {
     browser.storage.local.set({ "new-tab-data": ntdata });
   }
@@ -59,6 +78,11 @@
 
   function deleteEntry(idx) {
     ntdata["data"].splice(idx, 1);
+    ntdata["data"] = ntdata["data"];
+  }
+
+  function newEntry() {
+    ntdata["data"].push(selectedElementType.default);
     ntdata["data"] = ntdata["data"];
   }
 
@@ -124,6 +148,15 @@
       <div><button class="ntinput red" on:click={() => { deleteEntry(idx) }}>Delete</button></div>
     </div>
     {/each}
+
+    <div>
+      <select class="ntinput" bind:value={selectedElementType}>
+        {#each elementTypes as type}
+        <option value={type}>{type.display}</option>
+        {/each}
+      </select>
+      <button class="ntinput" on:click={newEntry}>Create Element</button>
+    </div>
   </div>
 {:catch error}
   <p style="color: red">Could not load new-tab data from storage.</p>

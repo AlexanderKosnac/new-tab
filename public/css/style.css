@@ -12,7 +12,7 @@ body {
     background-color: var(--main-background);
 }
 
-input[type="text"].ntinput, input[type="button"].ntinput, button.ntinput {
+input[type="text"].ntinput, input[type="button"].ntinput, button.ntinput, select.ntinput {
     background-color: var(--light-background);
     color: var(--font-color);
     border-color: var(--dark-background);
