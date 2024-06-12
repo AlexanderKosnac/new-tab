@@ -15,6 +15,34 @@
     browser.storage.local.remove("new-tab-data");
   }
 
+  function exportData() {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    const seconds = String(date.getSeconds()).padStart(2, "0");
+
+    let filename = `${year}-${month}-${day}-${hours}-${minutes}-${seconds}`;
+
+    const text = JSON.stringify(ntdata, null, 2);
+    let element = document.createElement("a");
+    element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(text));
+    element.setAttribute("download", filename);
+    element.style.display = "none";
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  }
+
+  function importData() {
+    let data = window.prompt("Insert JSON data to import:", "");
+    if (data == null) return;
+    ntdata = JSON.parse(data);
+    save();
+  }
+
   function moveUp(idx) {
     if (idx == 0) return;
     let tmp = ntdata["data"][idx-1];
@@ -45,6 +73,9 @@
   <div class="d-flex flex-column gap-3">
     <div class="d-flex flex-row gap-1">
       <button class="ntinput green" on:click={save}>Save</button>
+      <div style="flex-grow: 1"></div>
+      <button class="ntinput" on:click={exportData}>Export</button>
+      <button class="ntinput" on:click={importData}>Import</button>
       <div style="flex-grow: 1"></div>
       <button class="ntinput" on:click={restoreDefault}>Default</button>
       <button class="ntinput red" on:click={clear}>Clear</button>
@@ -94,8 +125,6 @@
     </div>
     {/each}
   </div>
-
-  <pre>{JSON.stringify(ntdata, null, 2)}</pre>
 {:catch error}
   <p style="color: red">Could not load new-tab data from storage.</p>
   <code>{error}</code>
