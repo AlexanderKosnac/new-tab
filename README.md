@@ -1,7 +1,6 @@
 # New Tab
 
-Build a plugin that replaces the default "New Tab" page in the browser with a more useful alternative.
-You can find an example deployed on [GitHub pages](https://alexanderkosnac.github.io/new-tab/).
+A plugin that replaces the default "New Tab" page in the browser with a more useful alternative.
 
 
 ## Build
@@ -18,4 +17,4 @@ After that, the plugin can be build with:
 npm run build
 ```
 
-The built plugin is found in the `build` directory.
+The built plugin is found in the `dist` directory.
