@@ -23,7 +23,9 @@
   {@const data = ntdata["new-tab-data"] ?? {}}
   <!--pre>{JSON.stringify(data, null, 2)}</pre-->
 
-  <div class="title">{data["title"] ?? "New Tab"}</div>
+  <div class="d-flex align-items-center justify-content-space-around">
+    <span class="title">{data["title"] ?? "New Tab"}</span>
+  </div>
   <div class="content">
   {#each data["data"] ?? [] as entry}
     {#if entry.type == "header"}

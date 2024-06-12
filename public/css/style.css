@@ -1,12 +1,68 @@
 :root {
     --main-background: #2A2A2E;
+    --dark-background: #202024;
     --light-background: #38383D;
     --lighter-background: #38383B;
     --font-color: #BBCDD4;
+    font-family: Calibri, sans-serif;
+    color: var(--font-color);
 }
 
 body {
-    font-family: Calibri, sans-serif;
     background-color: var(--main-background);
+}
+
+input[type="text"].ntinput, input[type="button"].ntinput, button.ntinput {
+    background-color: var(--light-background);
     color: var(--font-color);
+    border-color: var(--dark-background);
+    border-radius: 2px;
+}
+
+button.ntinput.green {
+    background-color: #9ADE7B;
+    color: black;
+    border-color: #508D69;
+}
+
+button.ntinput.red {
+    background-color: #FF6969;
+    color: black;
+    border-color: #C80036;
+}
+
+.p-1 {
+    padding: 2px;
+}
+
+.gap-1 {
+    gap: 2px;
+}
+
+.gap-2 {
+    gap: 4px;
+}
+
+.gap-3 {
+    gap: 6px;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.justify-content-space-around {
+    justify-content: space-between;
 }
