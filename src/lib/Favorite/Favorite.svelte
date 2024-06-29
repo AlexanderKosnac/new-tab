@@ -17,13 +17,13 @@
     }
 </script>
 
-<div class="fav-element" bind:this={favEl}>
+<div class="fav-element" bind:this={favEl} draggable="false">
     <a href="{url}" class="link-element" bind:this={linkEl} draggable="false">
         {#if shortcut}
         <div class="shortcut">{shortcut}</div>
         {/if}
         <div class="link-icon" bind:this={iconEl}>
-            <img class="icon" alt="Icon" src="./icons/{icon}">
+            <img class="icon" alt="Icon" src="./icons/{icon}" draggable="false" onerror="this.onerror=null; this.src='./icons/placeholder.svg'">
         </div>
     </a>
     <span class="link-label">{label}</span>
