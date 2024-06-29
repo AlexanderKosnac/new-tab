@@ -3,7 +3,7 @@
     --dark-background: #202024;
     --light-background: #38383D;
     --lighter-background: #38383B;
-    --font-color: #BBCDD4;
+    --font-color: white;
     font-family: Calibri, sans-serif;
     color: var(--font-color);
 }
@@ -13,21 +13,23 @@ body {
 }
 
 input[type="text"].ntinput, input[type="button"].ntinput, button.ntinput, select.ntinput {
-    background-color: var(--light-background);
+    background-color: #444444;
+    border-color: #444444;
     color: var(--font-color);
-    border-color: var(--dark-background);
     border-radius: 2px;
 }
 
+button.ntinput {
+    font-weight: 600;
+}
+
 button.ntinput.green {
-    background-color: #9ADE7B;
-    color: black;
+    background-color: #508D69;
     border-color: #508D69;
 }
 
 button.ntinput.red {
-    background-color: #FF6969;
-    color: black;
+    background-color: #C80036;
     border-color: #C80036;
 }
 
