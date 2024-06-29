@@ -12,7 +12,7 @@
       if (el) el.open();
   }
 
-  let dataPromise = browser.storage.local.get("new-tab-data") ?? data;
+  let dataPromise = browser.storage.local.get("new-tab-data");
 </script>
 
 <svelte:window on:keyup={openShortcut} />
@@ -20,14 +20,14 @@
 {#await dataPromise}
   <p>Loading new-tab data from storage.</p>
 {:then ntdata}
-  {@const data = ntdata["new-tab-data"] ?? {}}
+  {@const d = ntdata["new-tab-data"] ?? data}
   <!--pre>{JSON.stringify(data, null, 2)}</pre-->
 
   <div class="d-flex align-items-center justify-content-space-around">
-    <span class="title">{data["title"] ?? "New Tab"}</span>
+    <span class="title">{d["title"] ?? "New Tab"}</span>
   </div>
   <div class="content">
-  {#each data["data"] ?? [] as entry}
+  {#each d["data"] ?? [] as entry}
     {#if entry.type == "header"}
       <Header text={entry.text}/>
     {/if}

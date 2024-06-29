@@ -87,7 +87,7 @@
   }
 
   let dataPromise = browser.storage.local.get("new-tab-data");
-  dataPromise.then(it => { ntdata = it["new-tab-data"] }, () => {});
+  dataPromise.then(it => { ntdata = it["new-tab-data"] ?? data }, () => {});
 </script>
 
 <div class="popup-container">
