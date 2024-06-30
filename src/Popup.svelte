@@ -25,11 +25,6 @@
   let selectedElementType = elementTypes[0];
 
   function save() {
-    browser.storage.local.set({ "new-tab-data": ntdata });
-  }
-
-  function restoreDefault() {
-    browser.storage.local.set({ "new-tab-data": data });
     browser.storage.local.set({ "new-tab-data": ntdata }).then(
       () => {
         saveStatus.innerText = "Save succeeded!";
@@ -45,8 +40,10 @@
     });
   }
 
-  function clear() {
-    browser.storage.local.remove("new-tab-data");
+  function resetData() {
+    if (confirm("You are about to reset the data to the default. Do you really want to do this?")) {
+      browser.storage.local.set({ "new-tab-data": data });
+    }
   }
 
   function exportData() {
@@ -117,8 +114,7 @@
       <button class="ntinput" on:click={exportData}>Export</button>
       <button class="ntinput" on:click={importData}>Import</button>
       <div style="width: 10px"></div>
-      <button class="ntinput" on:click={restoreDefault}>Default</button>
-      <button class="ntinput red" on:click={clear}>Clear</button>
+      <button class="ntinput red" on:click={resetData}>Reset</button>
     </div>
 
     <label>
