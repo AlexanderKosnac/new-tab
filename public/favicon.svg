@@ -1,16 +1,19 @@
 <svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0,0,256,256">
-  <style>
-  .text {
-    font-size: 96px;
-    text-anchor: middle;
-    dominant-baseline: middle;
-  }
-  </style>
+  <def>
+    <path id="droplet" d="M 64 128
+      C 80 96, 80 48, 64 16
+      Q 152 48, 192 128
+      A 72 72, 0, 1, 1, 64 128"/>
+  </def>
   <g>
-    <rect width="256" height="256" fill="LightSalmon"></rect>
-    <!--
-    <text class="text" x="50%" y="33%">New</text>
-    <text class="text" x="50%" y="66%">Tab</text>
-    -->
+    <rect width="256" height="256" fill="#0090a1"></rect>
+    <g>
+      <use href="#droplet" fill="#00dca8" />
+
+      <circle cx="152" cy="188" r="30" fill="white" fill-opacity="0.5"/>
+      <circle cx="158" cy="194" r="20" fill="white" fill-opacity="0.8"/>
+
+      <use href="#droplet" fill="transparent" stroke="#2f4858" stroke-width="6" />
+    </g>
   </g>
 </svg>
