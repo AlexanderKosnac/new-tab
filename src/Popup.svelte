@@ -133,31 +133,14 @@
         </button>
       </div>
       {#if entry.type == "header"}
-        <div><input type="text" class="ntinput" size="45" bind:value={entry["text"]}/></div>
+        <input type="text" class="ntinput flex-grow" size="45" bind:value={entry["text"]}/>
       {/if}
       {#if entry.type == "favorite"}
-        <div>
-          <label>
-            Label:<br>
-            <input type="text" class="ntinput" size="15" bind:value={entry["label"]}/>
-          </label>
-        </div>
-        <div>
-          <label>
-            URL:<br>
-            <input type="text" class="ntinput" size="25" bind:value={entry["url"]}/>
-          </label>
-        </div>
-        <!--div><input type="text" bind:value={entry["icon"]}/></div-->
-        <div>
-          <label>
-            Shortcut:<br>
-            <input type="text" class="ntinput" maxlength="1" size="5" bind:value={entry["shortcut"]}/>
-          </label>
-        </div>
+        <input type="text" placeholder="Label" class="ntinput" size="15" bind:value={entry["label"]}/>
+        <input type="text" placeholder="URL" class="ntinput flex-grow" bind:value={entry["url"]}/>
+        <input type="text" placeholder="Shortcut" class="ntinput" maxlength="1" size="5" bind:value={entry["shortcut"]}/>
       {/if}
-      <div style="flex-grow: 1"></div>
-      <div><button class="ntinput red" on:click={() => { deleteEntry(idx) }}>Delete</button></div>
+      <button class="ntinput red" on:click={() => { deleteEntry(idx) }}>Delete</button>
     </div>
     {/each}
 
@@ -198,6 +181,9 @@
   .up-down-arrow > img {
     width: 24px;
     height: 24px;
+  }
+  .flex-grow {
+    flex-grow: 1;
   }
   .save-status {
     font-weight: 600;
