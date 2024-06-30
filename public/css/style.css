@@ -4,6 +4,8 @@
     --light-background: #38383D;
     --lighter-background: #38383B;
     --font-color: white;
+    --color-success: #3F8F29;
+    --color-error: #DE1A24;
     font-family: Calibri, sans-serif;
     color: var(--font-color);
 }
@@ -67,4 +69,12 @@ button.ntinput.red {
 
 .justify-content-space-around {
     justify-content: space-between;
+}
+
+.font-success {
+    color: var(--color-success);
+}
+
+.font-error {
+    color: var(--color-error);
 }

@@ -1,6 +1,8 @@
 <script>
   import data from "./lib/data.json";
 
+  let saveStatus;
+
   let ntdata;
 
   let elementTypes = [
@@ -28,6 +30,19 @@
 
   function restoreDefault() {
     browser.storage.local.set({ "new-tab-data": data });
+    browser.storage.local.set({ "new-tab-data": ntdata }).then(
+      () => {
+        saveStatus.innerText = "Save succeeded!";
+        saveStatus.classList.add("font-success");
+      },
+      () => {
+        saveStatus.innerText = "Save failed!";
+        saveStatus.classList.add("font-error");
+      }
+    ).then(() => {
+      saveStatus.classList.remove("hidden");
+      setTimeout(() => { saveStatus.classList.add("hidden") }, 1000)
+    });
   }
 
   function clear() {
@@ -95,12 +110,13 @@
   <p>Loading new-tab data from storage.</p>
 {:then _}
   <div class="d-flex flex-column gap-3">
-    <div class="d-flex flex-row gap-1">
+    <div class="d-flex flex-row gap-1 align-items-center">
       <button class="ntinput green" on:click={save}>Save</button>
+      <span bind:this={saveStatus} class="save-status flash-and-hide hidden" style="width: 15ch"></span>
       <div style="flex-grow: 1"></div>
       <button class="ntinput" on:click={exportData}>Export</button>
       <button class="ntinput" on:click={importData}>Import</button>
-      <div style="flex-grow: 1"></div>
+      <div style="width: 10px"></div>
       <button class="ntinput" on:click={restoreDefault}>Default</button>
       <button class="ntinput red" on:click={clear}>Clear</button>
     </div>
@@ -186,5 +202,20 @@
   .up-down-arrow > img {
     width: 24px;
     height: 24px;
+  }
+  .save-status {
+    font-weight: 600;
+    font-size: 0.8em;
+    position: relative;
+    top: 0px;
+    left: 0px;
+  }
+  .flash-and-hide {
+    opacity: 1;
+    transition: none;
+  }
+  .flash-and-hide.hidden {
+    opacity: 0;
+    transition: opacity 0.5s linear;
   }
 </style>
