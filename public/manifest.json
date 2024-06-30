@@ -18,7 +18,7 @@
     ],
 
     "icons": {
-        "48": "icons/icon.svg",
-        "96": "icons/icon.svg"
+        "48": "favicon.svg",
+        "96": "favicon.svgg"
     }
 }
