@@ -103,62 +103,68 @@
 </script>
 
 <div class="popup-container">
-{#await dataPromise}
-  <p>Loading new-tab data from storage.</p>
-{:then _}
-  <div class="d-flex flex-column gap-3">
-    <div class="d-flex flex-row gap-1 align-items-center">
-      <button class="ntinput green" on:click={save}>Save</button>
-      <span bind:this={saveStatus} class="save-status flash-and-hide hidden" style="width: 15ch"></span>
-      <div style="flex-grow: 1"></div>
-      <button class="ntinput" on:click={exportData}>Export</button>
-      <button class="ntinput" on:click={importData}>Import</button>
-      <div style="width: 10px"></div>
-      <button class="ntinput red" on:click={resetData}>Reset</button>
-    </div>
-
-    <label>
-      Title:
-      <input type="text" class="ntinput" bind:value={ntdata["title"]}/>
-    </label>
-
-    {#each ntdata["data"] ?? [] as entry, idx}
-    <div class="d-flex flex-row gap-3 align-items-center p-1 data-entry">
-      <div class="d-flex flex-column gap-1">
-        <button class="up-down-arrow" on:click={() => { moveUp(idx) }}>
-          <img src="./icons/arrow.svg" alt="Move up"/>
-        </button>
-        <button class="up-down-arrow" on:click={() => { moveDown(idx) }}>
-          <img src="./icons/arrow.svg" style="transform: rotate(180deg)" alt="Move down"/>
-        </button>
+  <div>
+  {#await dataPromise}
+    <p>Loading new-tab data from storage.</p>
+  {:then _}
+    <div class="d-flex flex-column gap-3">
+      <div class="d-flex flex-row gap-1 align-items-center">
+        <button class="ntinput green" on:click={save}>Save</button>
+        <span bind:this={saveStatus} class="save-status flash-and-hide hidden" style="width: 15ch"></span>
+        <div style="flex-grow: 1"></div>
+        <button class="ntinput" on:click={exportData}>Export</button>
+        <button class="ntinput" on:click={importData}>Import</button>
+        <div style="width: 10px"></div>
+        <button class="ntinput red" on:click={resetData}>Reset</button>
       </div>
-      {#if entry.type == "header"}
-        <input type="text" class="ntinput flex-grow" size="45" bind:value={entry["text"]}/>
-      {/if}
-      {#if entry.type == "favorite"}
-      <!--img class="icon" alt="Icon" src="{entry["icon"]}" draggable="false" onerror="this.onerror=null; this.src='./icons/placeholder.svg'"/-->
-        <img class="icon" alt="Icon" src="./icons/placeholder.svg" draggable="false" onerror="this.onerror=null; this.src='./icons/placeholder.svg'"/>
-        <input type="text" placeholder="Label" class="ntinput" size="15" bind:value={entry["label"]}/>
-        <input type="text" placeholder="URL" class="ntinput flex-grow" bind:value={entry["url"]}/>
-        <input type="text" placeholder="Shortcut" class="ntinput" maxlength="1" size="5" bind:value={entry["shortcut"]}/>
-      {/if}
-      <button class="ntinput red" on:click={() => { deleteEntry(idx) }}>Delete</button>
-    </div>
-    {/each}
 
-    <div>
-      <select class="ntinput" bind:value={selectedElementType}>
-        {#each elementTypes as type}
-        <option value={type}>{type.display}</option>
-        {/each}
-      </select>
-      <button class="ntinput" on:click={newEntry}>Create Element</button>
+      <label>
+        Title:
+        <input type="text" class="ntinput" bind:value={ntdata["title"]}/>
+      </label>
+
+      {#each ntdata["data"] ?? [] as entry, idx}
+      <div class="d-flex flex-row gap-3 align-items-center p-1 data-entry">
+        <div class="d-flex flex-column gap-1">
+          <button class="up-down-arrow" on:click={() => { moveUp(idx) }}>
+            <img src="./icons/arrow.svg" alt="Move up"/>
+          </button>
+          <button class="up-down-arrow" on:click={() => { moveDown(idx) }}>
+            <img src="./icons/arrow.svg" style="transform: rotate(180deg)" alt="Move down"/>
+          </button>
+        </div>
+        {#if entry.type == "header"}
+          <input type="text" class="ntinput flex-grow" size="45" bind:value={entry["text"]}/>
+        {/if}
+        {#if entry.type == "favorite"}
+        <!--img class="icon" alt="Icon" src="{entry["icon"]}" draggable="false" onerror="this.onerror=null; this.src='./icons/placeholder.svg'"/-->
+          <img class="icon" alt="Icon" src="./icons/placeholder.svg" draggable="false" onerror="this.onerror=null; this.src='./icons/placeholder.svg'"/>
+          <input type="text" placeholder="Label" class="ntinput" size="15" bind:value={entry["label"]}/>
+          <input type="text" placeholder="URL" class="ntinput flex-grow" bind:value={entry["url"]}/>
+          <input type="text" placeholder="Shortcut" class="ntinput" maxlength="1" size="5" bind:value={entry["shortcut"]}/>
+        {/if}
+        <button class="ntinput red" on:click={() => { deleteEntry(idx) }}>Delete</button>
+      </div>
+      {/each}
+
+      <div>
+        <select class="ntinput" bind:value={selectedElementType}>
+          {#each elementTypes as type}
+          <option value={type}>{type.display}</option>
+          {/each}
+        </select>
+        <button class="ntinput" on:click={newEntry}>Create Element</button>
+      </div>
     </div>
+  {:catch error}
+    <p style="color: red">Could not load new-tab data from storage.</p>
+    <code>{error}</code>
+  {/await}
   </div>
-{:catch error}
-  <p style="color: red">Could not load new-tab data from storage.</p>
-  <code>{error}</code>
-{/await}
+
+  <div>
+    asdasd
+  </div>
 </div>
 
 <style>
