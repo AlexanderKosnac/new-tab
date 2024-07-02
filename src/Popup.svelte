@@ -157,8 +157,10 @@
       </div>
     </div>
   {:catch error}
-    <p style="color: red">Could not load new-tab data from storage.</p>
-    <code>{error}</code>
+    <div class="font-error">
+      <p>Failed to load new-tab data from storage.</p>
+      <code>{error}</code>
+    </div>
   {/await}
   </div>
 
