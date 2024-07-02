@@ -136,6 +136,8 @@
         <input type="text" class="ntinput flex-grow" size="45" bind:value={entry["text"]}/>
       {/if}
       {#if entry.type == "favorite"}
+      <!--img class="icon" alt="Icon" src="{entry["icon"]}" draggable="false" onerror="this.onerror=null; this.src='./icons/placeholder.svg'"/-->
+        <img class="icon" alt="Icon" src="./icons/placeholder.svg" draggable="false" onerror="this.onerror=null; this.src='./icons/placeholder.svg'"/>
         <input type="text" placeholder="Label" class="ntinput" size="15" bind:value={entry["label"]}/>
         <input type="text" placeholder="URL" class="ntinput flex-grow" bind:value={entry["url"]}/>
         <input type="text" placeholder="Shortcut" class="ntinput" maxlength="1" size="5" bind:value={entry["shortcut"]}/>
@@ -181,6 +183,13 @@
   .up-down-arrow > img {
     width: 24px;
     height: 24px;
+  }
+  .icon {
+    border-radius: 7px;
+    min-width:  40px;
+    max-width:  40px;
+    min-height: 40px;
+    max-height: 40px;
   }
   .flex-grow {
     flex-grow: 1;
