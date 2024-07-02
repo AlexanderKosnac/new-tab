@@ -4,6 +4,11 @@
 
   import data from "./lib/data.json";
 
+  const componentMapping = {
+    "header": Header,
+    "favorite": Favorite,
+  };
+
   let shortcuts = {};
 
   function openShortcut(e) {
@@ -28,12 +33,7 @@
   </div>
   <div class="content">
   {#each d["data"] ?? [] as entry}
-    {#if entry.type == "header"}
-      <Header text={entry.text}/>
-    {/if}
-    {#if entry.type == "favorite"}
-      <Favorite url={entry.url} label={entry.label} icon={entry.icon} shortcut={entry.shortcut} bind:this={shortcuts[entry.shortcut?.toLowerCase()]}/>
-    {/if}
+    <svelte:component this={componentMapping[entry.type]} data={entry} bind:this={shortcuts[entry.shortcut?.toLowerCase()]} />
   {/each}
   </div>
 {:catch error}

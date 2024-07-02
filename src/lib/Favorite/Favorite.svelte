@@ -1,8 +1,7 @@
 <script>
-    export let url;
-    export let label;
-    export let icon = "placeholder.svg";
-    export let shortcut;
+    export let data;
+
+    $: icon = data.icon ?? "placeholder.svg";
 
     let favEl;
     let linkEl;
@@ -18,15 +17,15 @@
 </script>
 
 <div class="fav-element" bind:this={favEl} draggable="false">
-    <a href="{url}" class="link-element" bind:this={linkEl} draggable="false">
-        {#if shortcut}
-        <div class="shortcut">{shortcut}</div>
+    <a href="{data.url}" class="link-element" bind:this={linkEl} draggable="false">
+        {#if data.shortcut}
+        <div class="shortcut">{data.shortcut}</div>
         {/if}
         <div class="link-icon" bind:this={iconEl}>
             <img class="icon" alt="Icon" src="./icons/{icon}" draggable="false" onerror="this.onerror=null; this.src='./icons/placeholder.svg'">
         </div>
     </a>
-    <span class="link-label">{label}</span>
+    <span class="link-label">{data.label}</span>
 </div>
 
 <style>

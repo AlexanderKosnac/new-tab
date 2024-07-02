@@ -1,8 +1,8 @@
 <script>
-    export let text;
+    export let data;
 </script>
 
-<div class="header">{text}</div>
+<div class="header">{data.text}</div>
 
 <style>
 .header {
