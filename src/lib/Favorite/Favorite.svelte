@@ -1,5 +1,6 @@
 <script>
     export let data;
+    export let editable;
 
     $: icon = data.icon ?? "placeholder.svg";
 
@@ -17,15 +18,24 @@
 </script>
 
 <div class="fav-element" bind:this={favEl} draggable="false">
-    <a href="{data.url}" class="link-element" bind:this={linkEl} draggable="false">
-        {#if data.shortcut}
-        <div class="shortcut">{data.shortcut}</div>
+    <a href="{editable ? "javascript: void(0)" : data.url}" class="link-element" bind:this={linkEl} draggable="false">
+        {#if editable}
+            <div class="shortcut" class:transient={!data.shortcut} bind:textContent={data.shortcut} contenteditable>{data.shortcut ?? ""}</div>
+        {:else}
+            {#if data.shortcut}
+            <div class="shortcut">{data.shortcut}</div>
+            {/if}
         {/if}
+    
         <div class="link-icon" bind:this={iconEl}>
             <img class="icon" alt="Icon" src="./icons/{icon}" draggable="false" />
         </div>
     </a>
+    {#if editable}
+    <span class="link-label" bind:textContent={data.label} contenteditable>{data.label}</span>
+    {:else}
     <span class="link-label">{data.label}</span>
+    {/if}
 </div>
 
 <style>
@@ -50,8 +60,11 @@
 
     color: black;
     background-color: white;
-    border: 1px solid darkgrey;
 
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: darkgrey;
     border-radius: 50px;
 
     text-transform: capitalize;
@@ -66,6 +79,11 @@
     font-weight: 900;
     font-size: 0.9em;
     white-space: nowrap;
+}
+
+.shortcut.transient {
+    border-style: dashed;
+    opacity: .5;
 }
 
 .fav-element:hover {

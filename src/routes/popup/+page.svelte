@@ -24,22 +24,6 @@
   ];
   let selectedElementType = elementTypes[0];
 
-  function save() {
-    chrome.storage.local.set({ "new-tab-data": ntdata }).then(
-      () => {
-        saveStatus.innerText = "Save succeeded!";
-        saveStatus.classList.add("font-success");
-      },
-      () => {
-        saveStatus.innerText = "Save failed!";
-        saveStatus.classList.add("font-error");
-      }
-    ).then(() => {
-      saveStatus.classList.remove("hidden");
-      setTimeout(() => { saveStatus.classList.add("hidden") }, 1000)
-    });
-  }
-
   function resetData() {
     if (confirm("You are about to reset the data to the default. Do you really want to do this?")) {
       chrome.storage.local.set({ "new-tab-data": data });
@@ -169,10 +153,6 @@
     </div>
   {/await}
   </div>
-
-  <div>
-    Placeholder
-  </div>
 </div>
 
 <style>
@@ -207,20 +187,5 @@
   }
   .flex-grow {
     flex-grow: 1;
-  }
-  .save-status {
-    font-weight: 600;
-    font-size: 0.8em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-  }
-  .flash-and-hide {
-    opacity: 1;
-    transition: none;
-  }
-  .flash-and-hide.hidden {
-    opacity: 0;
-    transition: opacity 0.5s linear;
   }
 </style>
