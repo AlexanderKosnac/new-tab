@@ -12,9 +12,26 @@
   let ntdata;
 
   const componentMapping = {
-    "header": Header,
-    "favorite": Favorite,
+    "header": {
+      clazz: Header,
+      display: "Header",
+      default: {
+          "type": "header",
+          "text": ""
+      }
+    },
+    "favorite": {
+      clazz: Favorite,
+      display: "Favorite",
+      default: {
+        "type": "favorite",
+        "url": "",
+        "label": "",
+        "shortcut": ""
+      }
+    }
   };
+  let selectedElementKey = "favorite";
 
   let shortcuts = {};
 
@@ -38,6 +55,11 @@
       saveStatus.classList.remove("hidden");
       setTimeout(() => { saveStatus.classList.add("hidden") }, 1000)
     });
+  }
+
+  function newEntry() {
+    ntdata["data"].push(structuredClone(componentMapping[selectedElementKey].default));
+    ntdata["data"] = ntdata["data"];
   }
 
   let dataPromise;
@@ -68,8 +90,19 @@
   </div>
   <div class="content">
   {#each ntdata["data"] ?? [] as entry}
-    <svelte:component this={componentMapping[entry.type]} data={entry} {editable} bind:this={shortcuts[entry.shortcut?.toLowerCase()]} />
+    <svelte:component this={componentMapping[entry.type].clazz} data={entry} {editable} bind:this={shortcuts[entry.shortcut?.toLowerCase()]} />
   {/each}
+  </div>
+  {/if}
+  {#if editable}
+  <div>
+    <select class="ntinput" bind:value={selectedElementKey}>
+      {#each Object.entries(componentMapping) as [key, data]}
+      <option value={key}>{data.display}</option>
+      {/each}
+    </select>
+
+    <button class="ntinput" on:click={newEntry}>Create Element</button>
   </div>
   {/if}
 {:catch error}

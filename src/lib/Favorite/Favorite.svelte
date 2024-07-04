@@ -108,6 +108,7 @@
 
 .link-label {
     font-size: small;
+    min-width: 40px;
     max-width: 60px;
 }
 </style>

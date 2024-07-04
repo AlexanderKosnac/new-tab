@@ -13,5 +13,6 @@
 .header {
   font-size: 24px;
   font-weight: bold;
+  min-width: 50px;
 }
 </style>
