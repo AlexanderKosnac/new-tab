@@ -6,7 +6,7 @@
     "manifest_version": 3,
 
     "chrome_url_overrides": {
-        "newtab": "index.html"
+        "newtab": "new-tab.html"
     },
 
     "action": {

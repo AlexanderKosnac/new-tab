@@ -1,14 +1,6 @@
-import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
 
 export default defineConfig({
-	plugins: [svelte()],
-	build: {
-		rollupOptions: {
-			input: {
-				index: './index.html',
-				popup: './popup.html',
-			}
-		}
-	}
+	plugins: [sveltekit()]
 });

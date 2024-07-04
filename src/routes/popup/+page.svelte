@@ -1,5 +1,5 @@
 <script>
-  import data from "./lib/data.json";
+  import data from "$lib/data.json";
 
   let saveStatus;
 
@@ -25,7 +25,7 @@
   let selectedElementType = elementTypes[0];
 
   function save() {
-    browser.storage.local.set({ "new-tab-data": ntdata }).then(
+    chrome.storage.local.set({ "new-tab-data": ntdata }).then(
       () => {
         saveStatus.innerText = "Save succeeded!";
         saveStatus.classList.add("font-success");
@@ -42,7 +42,7 @@
 
   function resetData() {
     if (confirm("You are about to reset the data to the default. Do you really want to do this?")) {
-      browser.storage.local.set({ "new-tab-data": data });
+      chrome.storage.local.set({ "new-tab-data": data });
     }
   }
 
@@ -98,8 +98,12 @@
     ntdata["data"] = ntdata["data"];
   }
 
-  let dataPromise = browser.storage.local.get("new-tab-data");
-  dataPromise.then(it => { ntdata = it["new-tab-data"] ?? data }, () => {});
+  import { onMount } from 'svelte';
+  let dataPromise;
+  onMount(() => {
+    dataPromise = chrome.storage.local.set("new-tab-data");
+    dataPromise.then(it => { ntdata = it["new-tab-data"] ?? data }, () => {});
+  });
 </script>
 
 <div class="popup-container">
@@ -107,6 +111,7 @@
   {#await dataPromise}
     <p>Loading new-tab data from storage.</p>
   {:then _}
+    {#if ntdata}
     <div class="d-flex flex-column gap-3">
       <div class="d-flex flex-row gap-1 align-items-center">
         <button class="ntinput green" on:click={save}>Save</button>
@@ -156,6 +161,7 @@
         <button class="ntinput" on:click={newEntry}>Create Element</button>
       </div>
     </div>
+    {/if}
   {:catch error}
     <div class="font-error">
       <p>Failed to load new-tab data from storage.</p>
@@ -165,7 +171,7 @@
   </div>
 
   <div>
-    asdasd
+    Placeholder
   </div>
 </div>
 

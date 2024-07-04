@@ -22,7 +22,7 @@
         <div class="shortcut">{data.shortcut}</div>
         {/if}
         <div class="link-icon" bind:this={iconEl}>
-            <img class="icon" alt="Icon" src="./icons/{icon}" draggable="false" onerror="this.onerror=null; this.src='./icons/placeholder.svg'">
+            <img class="icon" alt="Icon" src="./icons/{icon}" draggable="false" />
         </div>
     </a>
     <span class="link-label">{data.label}</span>
