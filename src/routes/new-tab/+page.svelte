@@ -59,7 +59,7 @@
   <div class="d-flex align-items-center justify-content-space-around gap-2">
     <div class="title" style="flex-grow: 1">{ntdata["title"] ?? "New Tab"}</div>
     {#if editable}
-      <div bind:this={saveStatus} class="save-status flash-and-hide hidden" style="width: 15ch"></div>
+      <div bind:this={saveStatus} class="save-status flash-and-hide hidden"></div>
       <button class="ntinput green" on:click={save}>Save</button>
     {/if}
     <svg id="btnEdit" xmlns="http://www.w3.org/2000/svg" width="24" height="24" class:editable={editable} stroke="white" viewBox="0 0 16 16" on:click={() => { editable = !editable }}>
@@ -101,9 +101,6 @@ svg#btnEdit.editable {
 .save-status {
   font-weight: 600;
   font-size: 0.8em;
-  position: relative;
-  top: 0px;
-  left: 0px;
 }
 .flash-and-hide {
   opacity: 1;
