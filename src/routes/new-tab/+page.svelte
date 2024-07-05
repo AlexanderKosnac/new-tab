@@ -5,11 +5,10 @@
   import Header from "$lib/Header/Header.svelte";
 
   import data from "$lib/data.json";
+  import { newTabData } from "$lib/storage.js";
 
   let editable = false;
   let saveStatus;
-
-  let ntdata;
 
   const componentMapping = {
     "header": {
@@ -42,7 +41,7 @@
   }
 
   function save() {
-    chrome.storage.local.set({ "new-tab-data": ntdata }).then(
+    chrome.storage.local.set({ "new-tab-data": $newTabData }).then(
       () => {
         saveStatus.innerText = "Save succeeded!";
         saveStatus.classList.add("font-success");
@@ -58,14 +57,13 @@
   }
 
   function newEntry() {
-    ntdata["data"].push(structuredClone(componentMapping[selectedElementKey].default));
-    ntdata["data"] = ntdata["data"];
+    newTabData["data"].push(structuredClone(componentMapping[selectedElementKey].default));
   }
 
   let dataPromise;
   onMount(() => {
     dataPromise = chrome.storage.local.get("new-tab-data").then(it => {
-      ntdata = it["new-tab-data"] ?? data;
+      newTabData.set(it["new-tab-data"] ?? data);
     });
   });
 </script>
@@ -75,11 +73,10 @@
 {#await dataPromise}
   <p>Loading new-tab data from storage.</p>
 {:then _}
-  {#if ntdata}
   <!--pre>{JSON.stringify(data, null, 2)}</pre-->
 
   <div class="d-flex align-items-center justify-content-space-around gap-2">
-    <div class="title" style="flex-grow: 1">{ntdata["title"] ?? "New Tab"}</div>
+    <div class="title" style="flex-grow: 1">{$newTabData["title"] ?? "New Tab"}</div>
     {#if editable}
       <div bind:this={saveStatus} class="save-status flash-and-hide hidden"></div>
       <button class="ntinput green" on:click={save}>Save</button>
@@ -89,11 +86,10 @@
     </svg>
   </div>
   <div class="content">
-  {#each ntdata["data"] ?? [] as entry}
-    <svelte:component this={componentMapping[entry.type].clazz} data={entry} {editable} bind:this={shortcuts[entry.shortcut?.toLowerCase()]} />
+  {#each $newTabData["data"] ?? [] as entry, idx}
+    <svelte:component this={componentMapping[entry.type].clazz} {idx} {editable} bind:this={shortcuts[entry.shortcut?.toLowerCase()]} />
   {/each}
   </div>
-  {/if}
   {#if editable}
   <div>
     <select class="ntinput" bind:value={selectedElementKey}>

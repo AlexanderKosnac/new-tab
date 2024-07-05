@@ -1,10 +1,11 @@
 <script>
-    export let data;
+    import { newTabData } from "$lib/storage.js";
+
+    export let idx;
     export let editable;
 
-    $: icon = data.icon ?? "placeholder.svg";
+    $: icon = $newTabData["data"][idx].icon ?? "placeholder.svg";
 
-    let favEl;
     let linkEl;
     let iconEl;
 
@@ -17,13 +18,14 @@
     }
 </script>
 
-<div class="fav-element" bind:this={favEl} draggable="false">
-    <a href="{editable ? "javascript: void(0)" : data.url}" class="link-element" bind:this={linkEl} draggable="false">
+<div class="fav-element" draggable="false">
+  
+    <a href="{editable ? "javascript: void(0)" : $newTabData["data"][idx].url}" class="link-element" bind:this={linkEl} draggable="false">
         {#if editable}
-            <div class="shortcut" class:transient={!data.shortcut} bind:textContent={data.shortcut} contenteditable>{data.shortcut ?? ""}</div>
+            <div class="shortcut" class:transient={!$newTabData["data"][idx].shortcut} bind:textContent={$newTabData["data"][idx].shortcut} contenteditable>{$newTabData["data"][idx].shortcut ?? ""}</div>
         {:else}
-            {#if data.shortcut}
-            <div class="shortcut">{data.shortcut}</div>
+            {#if $newTabData["data"][idx].shortcut}
+            <div class="shortcut">{$newTabData["data"][idx].shortcut}</div>
             {/if}
         {/if}
     
@@ -32,9 +34,9 @@
         </div>
     </a>
     {#if editable}
-    <span class="link-label" bind:textContent={data.label} contenteditable>{data.label}</span>
+    <span class="link-label" bind:textContent={$newTabData["data"][idx].label} contenteditable>{$newTabData["data"][idx].label}</span>
     {:else}
-    <span class="link-label">{data.label}</span>
+    <span class="link-label">{$newTabData["data"][idx].label}</span>
     {/if}
 </div>
 

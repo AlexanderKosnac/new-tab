@@ -1,12 +1,14 @@
 <script>
-    export let data;
+    import { newTabData } from "$lib/storage.js";
+
+    export let idx;
     export let editable;
 </script>
 
 {#if editable}
 <div class="header" bind:textContent={data.text} contenteditable>{data.text}</div>
 {:else}
-<div class="header">{data.text}</div>
+<div class="header">{$newTabData["data"][idx].text}</div>
 {/if}
 
 <style>
