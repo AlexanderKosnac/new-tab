@@ -57,7 +57,8 @@
   }
 
   function newEntry() {
-    newTabData["data"].push(structuredClone(componentMapping[selectedElementKey].default));
+    $newTabData["data"].push(structuredClone(componentMapping[selectedElementKey].default));
+    $newTabData = $newTabData;
   }
 
   let dataPromise;
