@@ -1,8 +1,7 @@
 <script>
-    import { newTabData } from "$lib/storage.js";
+    import { newTabData, state } from "$lib/storage.js";
 
     export let idx;
-    export let editable;
 
     function deleteThis() {
         $newTabData["data"].splice(idx, 1);
@@ -10,7 +9,7 @@
     }
 </script>
 
-{#if editable}
+{#if $state.editable}
 <div class="d-flex align-items-center">
     <div class="header" bind:textContent={$newTabData["data"][idx].text} contenteditable>{$newTabData["data"][idx].text}</div>
     <svg xmlns="http://www.w3.org/2000/svg" class="btn-delete" width="16" height="16" fill="#C80036" viewBox="0 0 16 16" on:click={deleteThis}>
