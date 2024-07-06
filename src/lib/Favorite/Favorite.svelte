@@ -28,8 +28,8 @@
         $state.editMenu.open = !($state.editMenu.open && $state.editMenu.idx == idx);
 
         $state.editMenu.idx = idx;
-        $state.editMenu.x = e.clientX;
-        $state.editMenu.y = e.clientY;
+        $state.editMenu.x = e.clientX + window.scrollX;
+        $state.editMenu.y = e.clientY + window.scrollY;
     }
 </script>
 
