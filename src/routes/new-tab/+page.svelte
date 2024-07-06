@@ -9,6 +9,7 @@
 
   let editable = false;
   let saveStatus;
+  let iconInput;
 
   const componentMapping = {
     "header": {
@@ -61,6 +62,25 @@
     $newTabData = $newTabData;
   }
 
+  function loadIcons() {
+    $newTabData["icons"] ??= {};
+    for (let i=0; i<iconInput.files.length; i++) {
+      const file = iconInput.files.item(i);
+
+      const reader = new FileReader();
+      reader.onload = e => {
+        $newTabData["icons"][file.name] = e.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
+
+  function deleteIcon(key) {
+    delete $newTabData["icons"][key];
+    $newTabData = $newTabData;
+  }
+
   let dataPromise;
   onMount(() => {
     dataPromise = chrome.storage.local.get("new-tab-data").then(it => {
@@ -76,7 +96,7 @@
 {:then _}
   <!--pre>{JSON.stringify(data, null, 2)}</pre-->
 
-  <div class="d-flex align-items-center justify-content-space-around gap-2">
+  <div class="d-flex align-items-center justify-content-space-between gap-2">
     <div class="title" style="flex-grow: 1">{$newTabData["title"] ?? "New Tab"}</div>
     {#if editable}
       <div bind:this={saveStatus} class="save-status flash-and-hide hidden"></div>
@@ -92,14 +112,34 @@
   {/each}
   </div>
   {#if editable}
-  <div>
-    <select class="ntinput" bind:value={selectedElementKey}>
-      {#each Object.entries(componentMapping) as [key, data]}
-      <option value={key}>{data.display}</option>
-      {/each}
-    </select>
+  <div class="d-flex flex-column gap-1">
+    <h4>Insert new Element:</h4>
+    <div>
+      <select class="ntinput" bind:value={selectedElementKey}>
+        {#each Object.entries(componentMapping) as [key, data]}
+        <option value={key}>{data.display}</option>
+        {/each}
+      </select>
 
-    <button class="ntinput" on:click={newEntry}>Create Element</button>
+      <input type="button" class="ntinput" on:click={newEntry} value="Insert"/>
+    </div>
+
+    <h4>Load Icons:</h4>
+    <div>
+      <input type="file" class="ntinput" multiple="multiple" accept="image/*" bind:this={iconInput} />
+      <input type="button" class="ntinput" on:click={loadIcons} value="Load"/>
+    </div>
+
+    <h4>Stored Icons:</h4>
+    <div class="d-flex flex-wrap icon-display" style="margin-top: 10px; max-width: 800px">
+      {#each Object.entries($newTabData["icons"] ?? {}) as [key, base64]}
+      <img class="icon" src="{base64}" alt="icon" title="{key}"/>
+      <svg xmlns="http://www.w3.org/2000/svg" class="btn-delete" width="16" height="16" fill="#C80036" viewBox="0 0 16 16" on:click={() => deleteIcon(key)}>
+        <circle cx="50%" cy="50%" r="7" fill="white"/>
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+      </svg>
+      {/each}
+    </div>
   </div>
   {/if}
 {:catch error}
@@ -139,5 +179,23 @@ svg#btnEdit.editable {
 .flash-and-hide.hidden {
   opacity: 0;
   transition: opacity 0.5s linear;
+}
+.icon {
+  border-radius: 7px;
+  min-width:  40px;
+  max-width:  40px;
+  min-height: 40px;
+  max-height: 40px;
+}
+.btn-delete {
+  position: relative;
+  left: -8px;
+  top: -8px;
+  margin-right: 10px;
+
+  z-index: 1;
+}
+.icon-display {
+  row-gap: 10px;
 }
 </style>

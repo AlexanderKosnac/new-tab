@@ -14,9 +14,9 @@ body {
     background-color: var(--main-background);
 }
 
-input[type="text"].ntinput, input[type="button"].ntinput, button.ntinput, select.ntinput {
+input.ntinput:not([type="file"]), input.ntinput::file-selector-button, button.ntinput, select.ntinput {
     background-color: #424242;
-    border-color: #292929;
+    border-color: #9d9d9d;
     color: var(--font-color);
     border-radius: 3px;
 }
@@ -59,11 +59,15 @@ button.ntinput.red {
     flex-direction: row;
 }
 
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
 .align-items-center {
     align-items: center;
 }
 
-.justify-content-space-around {
+.justify-content-space-between {
     justify-content: space-between;
 }
 

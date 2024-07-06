@@ -28,5 +28,6 @@
     font-weight: bold;
     min-width: 50px;
     margin-right: 10px;
+    min-height: 1em;
 }
 </style>
