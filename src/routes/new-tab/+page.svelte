@@ -58,8 +58,10 @@
     });
   }
 
-  function newEntry() {
-    $newTabData["data"].push(structuredClone(componentMapping[selectedElementKey].default));
+  function newEntry(e) {
+    const type = e.originalTarget.getAttribute("etype");
+    const data = structuredClone(componentMapping[type].default);
+    $newTabData["data"].push(data);
     $newTabData = $newTabData;
   }
 
@@ -113,16 +115,12 @@
   {/each}
   </div>
   {#if editable}
+  <hr>
   <div class="d-flex flex-column gap-1">
     <h4>Insert new Element:</h4>
     <div>
-      <select class="ntinput" bind:value={selectedElementKey}>
-        {#each Object.entries(componentMapping) as [key, data]}
-        <option value={key}>{data.display}</option>
-        {/each}
-      </select>
-
-      <input type="button" class="ntinput" on:click={newEntry} value="Insert"/>
+      <input type="button" class="ntinput" on:click={newEntry} etype="header" value="Header"/>
+      <input type="button" class="ntinput" on:click={newEntry} etype="favorite" value="Favorite"/>
     </div>
 
     <h4>Load Icons:</h4>
@@ -132,7 +130,7 @@
     </div>
 
     <h4>Stored Icons:</h4>
-    <div class="d-flex flex-wrap icon-display" style="margin-top: 10px; max-width: 800px">
+    <div class="d-flex flex-wrap icon-display" style="max-width: 800px">
       {#each Object.entries($newTabData["icons"] ?? {}) as [key, base64]}
       <img class="icon" src="{base64}" alt="icon" title="{key}"/>
       <svg xmlns="http://www.w3.org/2000/svg" class="btn-delete" width="16" height="16" fill="#C80036" viewBox="0 0 16 16" on:click={() => deleteIcon(key)}>
