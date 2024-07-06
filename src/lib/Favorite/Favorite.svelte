@@ -1,5 +1,5 @@
 <script>
-    import { newTabData } from "$lib/storage.js";
+    import { newTabData, state } from "$lib/storage.js";
 
     export let idx;
     export let editable;
@@ -21,6 +21,16 @@
         $newTabData["data"].splice(idx, 1);
         $newTabData = $newTabData;
     }
+
+    function openIconSelection(e) {
+        if (!editable) return;
+
+        $state.editMenu.open = !($state.editMenu.open && $state.editMenu.idx == idx);
+
+        $state.editMenu.idx = idx;
+        $state.editMenu.x = e.clientX;
+        $state.editMenu.y = e.clientY;
+    }
 </script>
 
 <div class="fav-element" draggable="false">
@@ -41,7 +51,7 @@
         {/if}
     
         <div class="link-icon" bind:this={iconEl}>
-            <img class="icon" alt="Icon" src="./icons/{icon}" draggable="false" />
+            <img class="icon" alt="Icon" src="{$newTabData["icons"][icon] ?? "./icons/placeholder.svg"}" draggable="false" on:click={openIconSelection}/>
         </div>
     </a>
     {#if editable}

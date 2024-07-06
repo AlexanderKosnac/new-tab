@@ -3,6 +3,7 @@
 
   import Favorite from "$lib/Favorite/Favorite.svelte";
   import Header from "$lib/Header/Header.svelte";
+  import EditMenu from "$lib/EditMenu/EditMenu.svelte";
 
   import data from "$lib/data.json";
   import { newTabData } from "$lib/storage.js";
@@ -148,6 +149,8 @@
     <code>{error}</code>
   </div>
 {/await}
+
+<EditMenu/>
 
 <style>
 .title {
