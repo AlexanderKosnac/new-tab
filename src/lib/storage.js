@@ -6,7 +6,7 @@ export const state = writable({
     editable: false,
     editMenu: {
         open: false,
-        idx: 0,
+        idx: NaN,
         x: 0,
         y: 0,
     }

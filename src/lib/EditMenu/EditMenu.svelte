@@ -8,18 +8,27 @@
     function setIcon(key) {
         $newTabData["data"][$state.editMenu.idx].icon = key;
     }
+
+    function deleteThis() {
+        $newTabData["data"].splice($state.editMenu.idx, 1);
+        $newTabData = $newTabData;
+        close();
+    }
 </script>
 
 <div class="menu" class:hidden={!$state.editMenu.open} style="left: {$state.editMenu.x}px; top: {$state.editMenu.y}px">
     <div class="d-flex flex-row justify-content-space-between">
-        <div>Edit Menu</div>
+        <div><strong>Edit Menu</strong></div>
         <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16" on:click={close}>
                 <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
             </svg>
         </div>
     </div>
-    <div class="menu-content">
+    <div class="menu-content d-flex flex-column gap-3">
+        <div>
+            <input type="button" class="ntinput" value="Remove this Element" on:click={deleteThis}/>
+        </div>
         <div class="d-flex flex-wrap icon-list">
             {#each Object.entries($newTabData["icons"] ?? {}) as [key, base64]}
             <img class="icon hover-highlight" src="{base64}" alt="icon" title="{key}" on:click={() => setIcon(key)}/>
