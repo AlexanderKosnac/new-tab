@@ -53,8 +53,17 @@
 
 <div class="popup-container">
   <h1>New-Tab Settings</h1>
-  <tt>new-tab</tt> is a plugin that replaces the default "New Tab" page in the browser with a more useful alternative.
-  The project can be found on <a href="https://github.com/AlexanderKosnac/new-tab">GitHub</a>.
+  <p>
+    <tt>new-tab</tt> is a plugin that replaces the default "New Tab" page in the browser with a more useful alternative.
+    The project can be found on <a href="https://github.com/AlexanderKosnac/new-tab">GitHub</a>.
+  </p>
+
+  <p>
+    You can edit the layout by switchting to edit mode via the gear icon in the top right of the newtab page.
+    Text can be edited by simply clicking on it and editing it.
+    Edit hidden values, move and delete elements by right-clicking on the respective element.
+    Save the results via the button to the left of the gear icon, otherwise changes will be discarded.
+  </p>
 
   <h2>Data</h2>
   <div class="d-flex flex-column gap-3">
