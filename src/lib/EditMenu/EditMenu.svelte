@@ -1,6 +1,22 @@
 <script>
     import { newTabData, state } from "$lib/storage.js";
 
+    let drag = false;
+
+    function startDrag() {
+        drag = true;
+    }
+
+    function endDrag() {
+        drag = false;
+    }
+
+    function dragMenu(e) {
+        if (!drag) return;
+        $state.editMenu.x += e.movementX;
+        $state.editMenu.y += e.movementY;
+    }
+
     function close() {
         $state.editMenu.open = false;
     }
@@ -34,14 +50,17 @@
     }
 </script>
 
-<div class="menu" class:hidden={!$state.editMenu.open} style="left: {$state.editMenu.x}px; top: {$state.editMenu.y}px">
+<div class="menu" class:hidden={!$state.editMenu.open}
+    on:mousedown={startDrag}
+    on:mouseup={endDrag}
+    on:mouseleave={endDrag}
+    on:mousemove|preventDefault={dragMenu}
+    style="left: {$state.editMenu.x}px; top: {$state.editMenu.y}px">
     <div class="d-flex flex-row justify-content-space-between">
         <div><strong>Edit Menu</strong></div>
-        <div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16" on:click={close}>
-                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
-            </svg>
-        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16" on:click={close}>
+            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+        </svg>
     </div>
     <div class="menu-content d-flex flex-column gap-3">
         <div class="d-flex gap-1 flex-row">
