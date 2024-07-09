@@ -27,6 +27,9 @@
     </div>
     <div class="menu-content d-flex flex-column gap-3">
         <div>
+        {#if $state.editMenu.idx}
+            <input type="text" class="ntinput" placeholder="URL" bind:value={$newTabData["data"][$state.editMenu.idx].url}/>
+        {/if}
             <input type="button" class="ntinput" value="Remove this Element" on:click={deleteThis}/>
         </div>
         <div class="d-flex flex-wrap icon-list">
