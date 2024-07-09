@@ -16,9 +16,10 @@
         linkEl.click();
     }
 
-    function openIconSelection(e) {
+    function openEditMenu(e) {
         if (!$state.editable) return;
 
+        $state.editMenu.type = "favorite";
         $state.editMenu.open = !($state.editMenu.open && $state.editMenu.idx == idx);
 
         $state.editMenu.idx = idx;
@@ -27,7 +28,7 @@
     }
 </script>
 
-<div class="fav-element">
+<div class="fav-element" on:contextmenu|preventDefault={openEditMenu}>
     <a href="{$state.editable ? "javascript: void(0)" : $newTabData["data"][idx].url}" class="link-element" bind:this={linkEl}>
         {#if $state.editable}
             <div class="shortcut" class:transient={!$newTabData["data"][idx].shortcut} bind:textContent={$newTabData["data"][idx].shortcut} contenteditable>{$newTabData["data"][idx].shortcut ?? ""}</div>
@@ -38,7 +39,7 @@
         {/if}
     
         <div class="link-icon" bind:this={iconEl}>
-            <img class="icon" alt="Icon" src="{$newTabData["icons"][icon] ?? "./icons/placeholder.svg"}" draggable="false" on:click={openIconSelection}/>
+            <img class="icon" alt="Icon" src="{$newTabData["icons"][icon] ?? "./icons/placeholder.svg"}" draggable="false"/>
         </div>
     </a>
     {#if $state.editable}
@@ -120,12 +121,5 @@
     font-size: small;
     min-width: 40px;
     max-width: 60px;
-}
-.btn-delete {
-    position: relative;
-    top: 4px;
-    margin-top: -16px;
-
-    z-index: 1;
 }
 </style>

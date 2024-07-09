@@ -31,7 +31,6 @@
       }
     }
   };
-  let selectedElementKey = "favorite";
 
   let shortcuts = {};
 

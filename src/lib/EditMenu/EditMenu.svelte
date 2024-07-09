@@ -44,21 +44,22 @@
         </div>
     </div>
     <div class="menu-content d-flex flex-column gap-3">
-        <div>
+        <div class="d-flex gap-1 flex-row">
             <input type="button" class="ntinput" value="Move up" on:click={moveUp}/>
             <input type="button" class="ntinput" value="Move down" on:click={moveDown}/>
+            <div style="flex-grow: 1"></div>
+            <input type="button" class="ntinput red" value="Delete" on:click={deleteThis}/>
         </div>
-        {#if $state.editMenu.idx}
-            <input type="text" class="ntinput" placeholder="URL" bind:value={$newTabData["data"][$state.editMenu.idx].url}/>
+        {#if $state.editMenu.type === "favorite"}
+            {#if $state.editMenu.idx}
+                <input type="text" class="ntinput" placeholder="URL" bind:value={$newTabData["data"][$state.editMenu.idx].url}/>
+            {/if}
+            <div class="d-flex flex-wrap icon-list">
+                {#each Object.entries($newTabData["icons"] ?? {}) as [key, base64]}
+                <img class="icon hover-highlight" src="{base64}" alt="icon" title="{key}" on:click={() => setIcon(key)}/>
+                {/each}
+            </div>
         {/if}
-        <div>
-            <input type="button" class="ntinput" value="Remove this Element" on:click={deleteThis}/>
-        </div>
-        <div class="d-flex flex-wrap icon-list">
-            {#each Object.entries($newTabData["icons"] ?? {}) as [key, base64]}
-            <img class="icon hover-highlight" src="{base64}" alt="icon" title="{key}" on:click={() => setIcon(key)}/>
-            {/each}
-        </div>
     </div>
 </div>
 

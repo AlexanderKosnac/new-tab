@@ -5,6 +5,7 @@ export const newTabData = writable({});
 export const state = writable({
     editable: false,
     editMenu: {
+        type: "",
         open: false,
         idx: NaN,
         x: 0,
