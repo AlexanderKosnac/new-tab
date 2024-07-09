@@ -9,6 +9,24 @@
         $newTabData["data"][$state.editMenu.idx].icon = key;
     }
 
+    function moveUp() {
+        const idx = $state.editMenu.idx;
+        if (idx == 0) return;
+        let tmp = $newTabData["data"][idx-1];
+        $state.editMenu.idx -= 1;
+        $newTabData["data"][idx-1] = $newTabData["data"][idx];
+        $newTabData["data"][idx] = tmp;
+    }
+
+    function moveDown() {
+        const idx = $state.editMenu.idx;
+        if (idx == $newTabData["data"].length) return;
+        let tmp = $newTabData["data"][idx+1];
+        $state.editMenu.idx += 1;
+        $newTabData["data"][idx+1] = $newTabData["data"][idx];
+        $newTabData["data"][idx] = tmp;
+    }
+
     function deleteThis() {
         $newTabData["data"].splice($state.editMenu.idx, 1);
         $newTabData = $newTabData;
@@ -27,9 +45,13 @@
     </div>
     <div class="menu-content d-flex flex-column gap-3">
         <div>
+            <input type="button" class="ntinput" value="Move up" on:click={moveUp}/>
+            <input type="button" class="ntinput" value="Move down" on:click={moveDown}/>
+        </div>
         {#if $state.editMenu.idx}
             <input type="text" class="ntinput" placeholder="URL" bind:value={$newTabData["data"][$state.editMenu.idx].url}/>
         {/if}
+        <div>
             <input type="button" class="ntinput" value="Remove this Element" on:click={deleteThis}/>
         </div>
         <div class="d-flex flex-wrap icon-list">
