@@ -8,7 +8,9 @@
   import data from "$lib/data.json";
   import { newTabData, state } from "$lib/storage.js";
 
-  let saveStatus;
+  let saveStatusClass;
+  let saveStatusMsg;
+  let saveStatusHidden = true;
   let iconInput;
 
   const componentMapping = {
@@ -43,16 +45,16 @@
   function save() {
     chrome.storage.local.set({ "new-tab-data": $newTabData }).then(
       () => {
-        saveStatus.innerText = "Save succeeded!";
-        saveStatus.classList.add("font-success");
+        saveStatusMsg = "Save succeeded!";
+        saveStatusClass = "font-success";
       },
       () => {
-        saveStatus.innerText = "Save failed!";
-        saveStatus.classList.add("font-error");
+        saveStatusMsg = "Save failed!";
+        saveStatusClass = "font-error";
       }
     ).then(() => {
-      saveStatus.classList.remove("hidden");
-      setTimeout(() => { saveStatus.classList.add("hidden") }, 1000)
+      saveStatusHidden = false;
+      setTimeout(() => { saveStatusHidden = true }, 1000);
     });
   }
 
@@ -100,7 +102,7 @@
   <div class="d-flex align-items-center justify-content-space-between gap-2">
     <div class="title" style="flex-grow: 1">{$newTabData["title"] ?? "New Tab"}</div>
     {#if $state.editable}
-      <div bind:this={saveStatus} class="save-status flash-and-hide hidden"></div>
+      <div class="save-status flash-and-hide hidden {saveStatusClass}" class:hidden={saveStatusHidden}>{saveStatusMsg}</div>
       <button class="ntinput green" on:click={save}>Save</button>
     {/if}
     <svg id="btnEdit" xmlns="http://www.w3.org/2000/svg" width="24" height="24" class:editable={$state.editable} stroke="white" viewBox="0 0 16 16" on:click={() => { $state.editable = !$state.editable }}>
