@@ -37,9 +37,9 @@
             <div class="shortcut">{$newTabData["data"][idx].shortcut}</div>
             {/if}
         {/if}
-    
+
         <div class="link-icon" bind:this={iconEl}>
-            <img class="icon" alt="Icon" src="{$newTabData["icons"][icon] ?? "./icons/placeholder.svg"}" draggable="false"/>
+            <img class="icon" alt="Icon" src="{$newTabData["icons"]?.[icon] ?? "./icons/placeholder.svg"}" draggable="false"/>
         </div>
     </a>
     {#if $state.editable}

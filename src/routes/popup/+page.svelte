@@ -77,7 +77,7 @@
     </div>
     <div>
       <button class="ntinput btn-settings" on:click={resetData}>Reset</button>
-      Reset the stored data to the default.      
+      Reset the stored data to the default.
     </div>
   </div>
 </div>
