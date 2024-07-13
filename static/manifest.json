@@ -5,6 +5,12 @@
     "homepage_url": "https://github.com/AlexanderKosnac/new-tab",
     "manifest_version": 3,
 
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "new-tab@web.de"
+      }
+    },
+
     "chrome_url_overrides": {
         "newtab": "new-tab.html"
     },

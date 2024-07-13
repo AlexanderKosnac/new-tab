@@ -17,4 +17,5 @@ After that, the plugin can be build with:
 npm run build
 ```
 
-The built plugin is found in the `dist` directory.
+The built plugin is found in the `build` directory.
+
