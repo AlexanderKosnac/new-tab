@@ -2,6 +2,8 @@
 
 A plugin that replaces the default "New Tab" page in the browser with a more useful alternative.
 
+The plugin is published on the [Mozilla add-ons site](https://addons.mozilla.org/en-US/firefox/addon/new-tab-droplet/).
+
 
 ## Build
 
