@@ -70,7 +70,7 @@
             <input type="button" class="ntinput red" value="Delete" on:click={deleteThis}/>
         </div>
         {#if $state.editMenu.type === "favorite"}
-            {#if $state.editMenu.idx}
+            {#if $state.editMenu.idx !== undefined}
                 <input type="text" class="ntinput" placeholder="Label" bind:value={$newTabData["data"][$state.editMenu.idx].label}/>
                 <input type="text" class="ntinput" placeholder="URL" bind:value={$newTabData["data"][$state.editMenu.idx].url}/>
                 <input type="text" class="ntinput" placeholder="Shortcut" maxlength="1" bind:value={$newTabData["data"][$state.editMenu.idx].shortcut}/>
