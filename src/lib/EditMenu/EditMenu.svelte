@@ -71,7 +71,9 @@
         </div>
         {#if $state.editMenu.type === "favorite"}
             {#if $state.editMenu.idx}
+                <input type="text" class="ntinput" placeholder="Label" bind:value={$newTabData["data"][$state.editMenu.idx].label}/>
                 <input type="text" class="ntinput" placeholder="URL" bind:value={$newTabData["data"][$state.editMenu.idx].url}/>
+                <input type="text" class="ntinput" placeholder="Shortcut" maxlength="1" bind:value={$newTabData["data"][$state.editMenu.idx].shortcut}/>
             {/if}
             <div class="d-flex flex-wrap icon-list">
                 {#each Object.entries($newTabData["icons"] ?? {}) as [key, base64]}
