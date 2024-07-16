@@ -50,12 +50,9 @@
     }
 </script>
 
-<div class="menu" class:hidden={!$state.editMenu.open}
-    on:mousedown={startDrag}
-    on:mouseup={endDrag}
-    on:mouseleave={endDrag}
-    on:mousemove|preventDefault={dragMenu}
-    style="left: {$state.editMenu.x}px; top: {$state.editMenu.y}px">
+<svelte:window on:mouseup={endDrag} on:mousemove|preventDefault={dragMenu}/>
+
+<div class="menu" class:hidden={!$state.editMenu.open} on:mousedown={startDrag} style="left: {$state.editMenu.x}px; top: {$state.editMenu.y}px">
     <div class="d-flex flex-row justify-content-space-between">
         <div><strong>Edit Menu</strong></div>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16" on:click={close}>
@@ -87,6 +84,7 @@
 <style>
 .menu {
     position: absolute;
+    cursor: grab;
 
     z-index: 2;
 
