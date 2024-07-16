@@ -29,7 +29,7 @@
 </script>
 
 <div class="fav-element" on:contextmenu|preventDefault={openEditMenu}>
-    <a href="{$state.editable ? "javascript: void(0)" : $newTabData["data"][idx].url}" class="link-element" bind:this={linkEl}>
+    <svelte:element this={$state.editable ? "div" : "a"}  href="{$newTabData["data"][idx].url}" class="link-element" bind:this={linkEl}>
         {#if $state.editable}
             <div class="shortcut" class:transient={!$newTabData["data"][idx].shortcut} bind:textContent={$newTabData["data"][idx].shortcut} contenteditable>{$newTabData["data"][idx].shortcut ?? ""}</div>
         {:else}
@@ -41,7 +41,7 @@
         <div class="link-icon" bind:this={iconEl}>
             <img class="icon" alt="Icon" src="{$newTabData["icons"]?.[icon] ?? "./icons/placeholder.svg"}" draggable="false"/>
         </div>
-    </a>
+    </svelte:element>
     {#if $state.editable}
     <span class="link-label" bind:textContent={$newTabData["data"][idx].label} contenteditable>{$newTabData["data"][idx].label}</span>
     {:else}
