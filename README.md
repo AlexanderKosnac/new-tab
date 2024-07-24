@@ -21,3 +21,10 @@ npm run build
 
 The built plugin is found in the `build` directory.
 
+
+## Development
+
+For development, `web-ext` can be useful.
+Switch into the `build` directory and check for errors and warnings with `web-ext lint` command.
+Use `web-ext run` to run a separate, special browser instance that automatically reloads the changes in the `build` directory.
+Note that you still have to run `npm run build`, to compile the changes into the `build` directory.
