@@ -36,7 +36,7 @@
 
     function moveDown() {
         const idx = $state.editMenu.idx;
-        if (idx == $newTabData["data"].length) return;
+        if (idx == $newTabData["data"].length-1) return;
         let tmp = $newTabData["data"][idx+1];
         $state.editMenu.idx += 1;
         $newTabData["data"][idx+1] = $newTabData["data"][idx];

@@ -1,6 +1,6 @@
 {
     "name": "new-tab",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Replaces the new-tab page with a useful alternative.",
     "homepage_url": "https://github.com/AlexanderKosnac/new-tab",
     "manifest_version": 3,
